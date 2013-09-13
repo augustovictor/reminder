@@ -73,6 +73,7 @@
 				return $this->redirect(array('action' => 'index'));
 			}
 		}
+		// End delete
 
 	}
 	// End RemindersController
