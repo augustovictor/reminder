@@ -40,14 +40,30 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link('home', array('controller' => 'reminders', 'action' => 'index')); ?></h1>
-			
+			<h1>
+				<?php echo $this->Html->link('home', array('controller' => 'reminders', 'action' => 'index')); ?>
+
+				<?php $user = $this->Session->read('Auth.user'); ?>
+				<?php echo $user['username']; ?>
+			</h1>
+
+			<!-- If user NOT logged in -->
 			<?php if(!$this->Session->read('Auth.User')): ?>
 					<?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login')); ?>
 					<?php echo $this->Html->link('Sign up', array('controller' => 'users', 'action' => 'add')); ?>
 			<?php endif; ?> 
 			
-			<?php if($this->Session->read('Auth.User')) echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?>
+			<!-- If user logged in -->
+			<?php if($this->Session->read('Auth.User')): ?>
+
+				<?php echo $this->Html->link('Reminders', array('controller' => 'reminders', 'action' => 'index')); ?>
+
+				<?php if($user['role'] === 'admin') echo $this->Html->link('Categories', array('controller' => 'categories', 'action' => 'index')); ?>
+
+
+				<?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?>
+
+			<?php endif; ?>
 		
 		</div>
 		<div id="content">

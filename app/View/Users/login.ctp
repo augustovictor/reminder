@@ -1,3 +1,5 @@
+<h1> Login </h1>
+
 <div class="users form">
 	<?php echo $this->Session->flash('auth'); ?>
 	<?php echo $this->Form->create('User'); ?>

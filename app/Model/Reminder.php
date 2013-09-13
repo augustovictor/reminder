@@ -12,6 +12,9 @@
 		public function isOwnedBy($reminder, $user) {
 		    return $this->field('id', array('id' => $reminder, 'user_id' => $user)) === $reminder;
 		}
+
+		public $belongsTo = 'User';
+		
 	}
 	// End Reminder
 
