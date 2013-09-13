@@ -7,6 +7,23 @@
 		public $helpers = array('Html', 'Form');
 		public $components = array('Session');
 
+		public function isAuthorized($user) {
+		    // All registered users can add reminders
+		    if ($this->action === 'add') {
+		        return true;
+		    }
+
+		    // The owner of a reminder can edit and delete it
+		    if (in_array($this->action, array('edit', 'delete'))) {
+		        $reminderId = $this->request->params['pass'][0];
+		        if ($this->Reminder->isOwnedBy($reminderId, $user['id'])) {
+		            return true;
+		        }
+		    }
+
+		    return parent::isAuthorized($user);
+		}
+
 		public function index() {
 			$this->set('reminders', $this->Reminder->find('all'));
 		}
@@ -28,7 +45,8 @@
 
 		public function add() {
 			if ($this->request->is('post')) {
-				$this->Reminder->create();
+				// $this->Reminder->create();
+				$this->request->data['Reminder']['user_id'] = $this->Auth->user('id');
 				if ($this->Reminder->save($this->request->data)) {
 					$this->Session->setFlash(__('Your reminder has been saved.'));
 					return $this->redirect(array('action' => 'index'));
