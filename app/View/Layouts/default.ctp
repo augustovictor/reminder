@@ -55,6 +55,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			
 			<!-- If user logged in -->
 			<?php if($this->Session->read('Auth.User')): ?>
+				<?php echo 'Hello, ' . AuthComponent::user('username'); ?>
 
 				<?php echo $this->Html->link('Reminders', array('controller' => 'reminders', 'action' => 'index')); ?>
 
