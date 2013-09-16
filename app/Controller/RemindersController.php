@@ -4,7 +4,7 @@
 
 	class RemindersController extends AppController {
 
-		public $helpers = array('Html', 'Form');
+		public $helpers = array('Html', 'Form', 'Session');
 		public $components = array('Session');
 
 		public function isAuthorized($user) {
@@ -24,8 +24,22 @@
 		    return parent::isAuthorized($user);
 		}
 
+		// $this->set('categories', $this->Category->find('list'));
+
 		public function index() {
-			$this->set('reminders', $this->Reminder->find('all'));
+			// $this->set('reminders', $this->Reminder->find('all', array('order' => 'date desc')));
+			$this->set('reminders', $this->Reminder->find('all', 
+					array(
+						'order' => 'date asc',
+						'conditions' => array('user_id' => $this->Auth->user('id'))
+					) //End array
+				) //End find
+			); // End set
+
+			// $this->set('reminders', $this->Reminder->find('list', array(
+			// 	'conditions' => array('user_id' => 3)	
+			// )));
+
 		}
 		// End index
 
@@ -44,6 +58,11 @@
 		// End view
 
 		public function add() {
+
+			$this->loadModel('Category');
+
+			$this->set('categories', $this->Category->find('list'));
+
 			if ($this->request->is('post')) {
 				// $this->Reminder->create();
 				$this->request->data['Reminder']['user_id'] = $this->Auth->user('id');

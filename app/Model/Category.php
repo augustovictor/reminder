@@ -7,6 +7,7 @@
 			'title' => array('rule' => 'notEmpty'),
 			'description' => array('rule' => 'notEmpty')
 			);
+
 	}
 	// End Category
 

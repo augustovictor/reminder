@@ -6,12 +6,17 @@
 		public $validate = array(
 			'title' => array('rule' => 'notEmpty'),
 			'description' => array('rule' => 'notEmpty'),
-			'date' => array('rule' => 'notEmpty')
+			'date' => array('rule' => 'notEmpty'),
+			'category_id' => array('rule' => 'notEmpty')
 		);
 
 		public function isOwnedBy($reminder, $user) {
 		    return $this->field('id', array('id' => $reminder, 'user_id' => $user)) === $reminder;
 		}
+
+		public $belongsTo = 'User';
+		// public $hasOne = 'Category';
+
 	}
 	// End Reminder
 

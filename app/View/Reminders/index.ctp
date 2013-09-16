@@ -8,6 +8,7 @@
 		<tr>
 			<td> Reminder </td>
 			<td> Date </td>
+			<td> Customer </td>
 			<td> Actions </td>
 		</tr>
 	</thead>
@@ -17,14 +18,22 @@
 		<?php if($reminders) ?>
 		<?php foreach($reminders as $reminder): ?>
 			<tr>
-				<td>
+				<!-- Reminder -->
+				<td> 
 					<?php echo $this->Html->link($reminder['Reminder']['title'], array('controller' => 'reminders', 'action' => 'view', $reminder['Reminder']['id'])); ?>
 				</td>
 
+				<!-- Date -->
 				<td>
 					<?php echo date('l jS \of F Y h:i:s A', strtotime($reminder['Reminder']['date'])); ?>
 				</td>
 
+				<!-- Costumer -->
+				<td>
+					<?php echo $reminder['User']['username']; ?>
+				</td>
+
+				<!-- Actions -->
 				<td>
 					<?php echo $this->Html->link('Edit', array('controller' => 'reminders', 'action' => 'edit', $reminder['Reminder']['id'])); ?>
 					<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $reminder['Reminder']['id']), array('confirm' => 'Are you sure?')); ?>
