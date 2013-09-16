@@ -44,7 +44,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				<?php echo $this->Html->link('home', array('controller' => 'reminders', 'action' => 'index')); ?>
 
 				<?php $user = $this->Session->read('Auth.user'); ?>
-				<?php echo $user['username']; ?>
 			</h1>
 
 			<!-- If user NOT logged in -->
@@ -55,7 +54,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			
 			<!-- If user logged in -->
 			<?php if($this->Session->read('Auth.User')): ?>
-				<?php echo 'Hello, ' . AuthComponent::user('username'); ?>
+				<?php echo 'Hello, ' . AuthComponent::user('username') . ' (' . AuthComponent::user('role') . ')'; ?>
+
+				<br />
+				<br />
 
 				<?php echo $this->Html->link('Reminders', array('controller' => 'reminders', 'action' => 'index')); ?>
 

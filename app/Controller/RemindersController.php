@@ -57,9 +57,11 @@
 		}
 		// End view
 
-
 		public function add() {
 
+			$this->loadModel('Category');
+
+			$this->set('categories', $this->Category->find('list'));
 
 			if ($this->request->is('post')) {
 				// $this->Reminder->create();

@@ -6,7 +6,8 @@
 		public $validate = array(
 			'title' => array('rule' => 'notEmpty'),
 			'description' => array('rule' => 'notEmpty'),
-			'date' => array('rule' => 'notEmpty')
+			'date' => array('rule' => 'notEmpty'),
+			'category_id' => array('rule' => 'notEmpty')
 		);
 
 		public function isOwnedBy($reminder, $user) {
@@ -14,7 +15,8 @@
 		}
 
 		public $belongsTo = 'User';
-		
+		// public $hasOne = 'Category';
+
 	}
 	// End Reminder
 
