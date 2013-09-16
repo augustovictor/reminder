@@ -27,19 +27,19 @@
 		// $this->set('categories', $this->Category->find('list'));
 
 		public function index() {
-			// $this->set('reminders', $this->Reminder->find('all', array('order' => 'date desc')));
-			$this->set('reminders', $this->Reminder->find('all', 
-					array(
-						'order' => 'date asc',
-						'conditions' => array('user_id' => $this->Auth->user('id'))
-					) //End array
-				) //End find
-			); // End set
+			if($this->Auth->user('role') === 'admin') {
+				$this->set('reminders', $this->Reminder->find('all', array('order' => 'date asc')));
+			}
 
-			// $this->set('reminders', $this->Reminder->find('list', array(
-			// 	'conditions' => array('user_id' => 3)	
-			// )));
-
+			else {
+				$this->set('reminders', $this->Reminder->find('all', 
+						array(
+							'order' => 'date asc',
+							'conditions' => array('user_id' => $this->Auth->user('id'))
+						) //End array
+					) //End find
+				); // End set
+			} //End else
 		}
 		// End index
 
