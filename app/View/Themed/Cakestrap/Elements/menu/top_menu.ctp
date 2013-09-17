@@ -17,6 +17,8 @@
 				<!-- If user logged in -->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+						<?php echo AuthComponent::user('role'); ?>
+						-
 						<?php echo AuthComponent::user('username'); ?> 
 						<b class="caret"></b>
 					</a>

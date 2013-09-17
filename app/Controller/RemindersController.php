@@ -27,26 +27,53 @@
 		// $this->set('categories', $this->Category->find('list'));
 
 		public function index() {
-			// $this->set('reminders', $this->Reminder->find('all', array('order' => 'date desc')));
-			$this->set('toDoReminders', $this->Reminder->find('all', 
-					array(
-						'order' => 'date asc',
-						'conditions' => array(
-							'user_id' => $this->Auth->user('id'), 
-							'done' => '0'
-							) //End conditions
-					) //End array
-				) //End find
-			); // End set
+			$order = 'date asc';
+			$current_user_id = $this->Auth->user('id');
+			$current_user_role = $this->Auth->user('role');
 
-			$this->set('closedReminders', $this->Reminder->find('all', 
-				array('order' => 'date asc', 'conditions' => array(
-							'user_id' => $this->Auth->user('id'), 
-							'done' => '1'
-						) //End conditions
-					) //End array
-				) //End find
-			);//End set
+			if($current_user_role === 'customer') {
+				$this->set('toDoReminders', $this->Reminder->find('all', 
+						array(
+							'order' => $order,
+							'conditions' => array(
+								'user_id' => $current_user_id, 
+								'done' => '0'
+								) //End conditions
+						) //End array
+					) //End find
+				); // End set
+
+				$this->set('closedReminders', $this->Reminder->find('all', 
+					array('order' => $order, 'conditions' => array(
+								'user_id' => $current_user_id, 
+								'done' => '1'
+							) //End conditions
+						) //End array
+					) //End find
+				);//End set
+			}
+			// End if customer
+
+			if ($current_user_role === 'admin') {
+				$this->set('toDoReminders', $this->Reminder->find('all', 
+						array(
+							'order' => $order,
+							'conditions' => array(
+								'done' => '0'
+								) //End conditions
+						) //End array
+					) //End find
+				); // End set
+
+				$this->set('closedReminders', $this->Reminder->find('all', 
+					array('order' => $order, 'conditions' => array(
+								'done' => '1'
+							) //End conditions
+						) //End array
+					) //End find
+				);//End set
+			}
+			// End if current_user_role
 		}
 		// End index
 
@@ -131,7 +158,7 @@
 
 			if ($this->request->is('post') || $this->request->is('put')) {
 				$this->Reminder->id = $id;
-				$this->Reminder->done = '1';
+				$this->Reminder->done = 1;
 				if ($this->Reminder->save($this->request->data)) {
 					$this->Session->setFlash(__('Reminder closed.'));
 					return $this->redirect(array('action' => 'index'));
@@ -143,7 +170,10 @@
 				$this->request->data = $reminder;
 			}
 
+			$this->render('index');	
+
 		}
+		// End close
 
 	}
 	// End RemindersController
