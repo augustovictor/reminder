@@ -146,34 +146,44 @@
 		}
 		// End delete
 
-		public function close($id = null) {
-			if (!$id) {
-				throw new NotFoundException(__('Invalid reminder.'));
-			}
+		// public function close($id = null) {
+		// 	if (!$id) {
+		// 		throw new NotFoundException(__('Invalid reminder.'));
+		// 	}
 
-			$reminder = $this->Reminder->findById($id);
-			if (!$reminder) {
-				throw new NotFoundException(__('Invalid reminder.'));
-			}
+		// 	$reminder = $this->Reminder->findById($id);
+		// 	if (!$reminder) {
+		// 		throw new NotFoundException(__('Invalid reminder.'));
+		// 	}
 
-			if ($this->request->is('post') || $this->request->is('put')) {
-				$this->Reminder->id = $id;
-				$this->Reminder->done = 1;
-				if ($this->Reminder->save($this->request->data)) {
-					$this->Session->setFlash(__('Reminder closed.'));
-					return $this->redirect(array('action' => 'index'));
-				}
-				$this->Session->setFlash(__('Unable to close this reminder.'));
-			}
+		// 	if ($this->request->is('post') || $this->request->is('put')) {
+		// 		$this->Reminder->id = $id;
+		// 		$this->Reminder->done = 1;
+		// 		if ($this->Reminder->save($this->request->data)) {
+		// 			$this->Session->setFlash(__('Reminder closed.'));
+		// 			return $this->redirect(array('action' => 'index'));
+		// 		}
+		// 		$this->Session->setFlash(__('Unable to close this reminder.'));
+		// 	}
 
-			if(!$this->request->data) {
-				$this->request->data = $reminder;
-			}
+		// 	if(!$this->request->data) {
+		// 		$this->request->data = $reminder;
+		// 	}
 
-			$this->render('index');	
+		// 	$this->render('index');	
 
-		}
+		// }
 		// End close
+
+
+		public function close() {
+			$reminder_id = $this->request->data['Reminder']['id'];
+			$reminder = $this->Reminder->find(array('Reminder.id' => $reminder_id));
+			$reminder['done'] = 1;
+			if($this->Reminder->save($this->data)) {
+				$this->redirect('/reminders');
+			}
+		}
 
 	}
 	// End RemindersController
