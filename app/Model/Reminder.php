@@ -14,8 +14,7 @@
 		    return $this->field('id', array('id' => $reminder, 'user_id' => $user)) === $reminder;
 		}
 
-		public $belongsTo = 'User';
-		// public $hasOne = 'Category';
+		public $belongsTo = array('User', 'Category');
 
 	}
 	// End Reminder
