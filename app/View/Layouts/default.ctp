@@ -38,7 +38,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<div id="container">
+	<div id="container" class="container">
 		<div id="header">
 			<h1>
 				<?php echo $this->Html->link('home', array('controller' => 'reminders', 'action' => 'index')); ?>

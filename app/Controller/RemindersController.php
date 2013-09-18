@@ -27,19 +27,53 @@
 		// $this->set('categories', $this->Category->find('list'));
 
 		public function index() {
-			// $this->set('reminders', $this->Reminder->find('all', array('order' => 'date desc')));
-			$this->set('reminders', $this->Reminder->find('all', 
-					array(
-						'order' => 'date asc',
-						'conditions' => array('user_id' => $this->Auth->user('id'))
-					) //End array
-				) //End find
-			); // End set
+			$order = 'date asc';
+			$current_user_id = $this->Auth->user('id');
+			$current_user_role = $this->Auth->user('role');
 
-			// $this->set('reminders', $this->Reminder->find('list', array(
-			// 	'conditions' => array('user_id' => 3)	
-			// )));
+			if($current_user_role === 'customer') {
+				$this->set('toDoReminders', $this->Reminder->find('all', 
+						array(
+							'order' => $order,
+							'conditions' => array(
+								'user_id' => $current_user_id, 
+								'done' => '0'
+								) //End conditions
+						) //End array
+					) //End find
+				); // End set
 
+				$this->set('closedReminders', $this->Reminder->find('all', 
+					array('order' => $order, 'conditions' => array(
+								'user_id' => $current_user_id, 
+								'done' => '1'
+							) //End conditions
+						) //End array
+					) //End find
+				);//End set
+			}
+			// End if customer
+
+			if ($current_user_role === 'admin') {
+				$this->set('toDoReminders', $this->Reminder->find('all', 
+						array(
+							'order' => $order,
+							'conditions' => array(
+								'done' => '0'
+								) //End conditions
+						) //End array
+					) //End find
+				); // End set
+
+				$this->set('closedReminders', $this->Reminder->find('all', 
+					array('order' => $order, 'conditions' => array(
+								'done' => '1'
+							) //End conditions
+						) //End array
+					) //End find
+				);//End set
+			}
+			// End if current_user_role
 		}
 		// End index
 
@@ -110,7 +144,30 @@
 				return $this->redirect(array('action' => 'index'));
 			}
 		}
-		// End delete
+
+
+		public function close($id = null) {
+			if (!$id) {
+				throw new NotFoundException(__('Invalid reminder.'));
+			}
+
+			$reminder = $this->Reminder->findById($id);
+			if (!$reminder) {
+				throw new NotFoundException(__('Invalid reminder.'));
+			}
+
+			$this->Reminder->id = $id;
+			$this->Reminder->set('done', 1);
+			if ($this->Reminder->save($this->request->data)) {
+				$this->Session->setFlash(__('Reminder closed.'));
+				return $this->redirect(array('action' => 'index'));
+			}
+
+			if(!$this->request->data) {
+				$this->request->data = $reminder;
+			}
+		}
+		// End close
 
 	}
 	// End RemindersController

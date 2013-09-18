@@ -33,6 +33,8 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+    public $theme = "Cakestrap";
+
 	public $components = array(
         'Session',
         'Auth' => array(
