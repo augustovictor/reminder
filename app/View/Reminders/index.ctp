@@ -16,7 +16,7 @@
 			<thead>
 				<tr>
 					<th> Reminder </th>
-					<!-- <th> Category </th> -->
+					<th> Category </th>
 					<th> Date </th>
 					<th> Customer </th>
 					<th class="text-right"> Actions </th>
@@ -34,9 +34,9 @@
 						</td>
 
 						<!-- Category -->
-						<!-- <td>
+						<td>
 							<?php echo $reminder['Category']['title']; ?>
-						</td> -->
+						</td>
 
 						<!-- Date -->
 						<td>
@@ -79,7 +79,7 @@
 			<thead>
 				<tr>
 					<th> Reminder </th>
-					<!-- <th> Category </th> -->
+					<th> Category </th>
 					<th> Date </th>
 					<th> Customer </th>
 					<th class="text-right"> Actions </th>
@@ -95,9 +95,9 @@
 						</td>
 
 						<!-- Category -->
-						<!-- <td>
+						<td>
 							<?php echo $reminder['Category']['title']; ?>
-						</td> -->
+						</td>
 						
 						<!-- Date -->
 						<td>

@@ -110,6 +110,11 @@
 		// End add
 
 		public function edit($id = null) {
+
+			$this->loadModel('Category');
+
+			$this->set('categories', $this->Category->find('list'));
+
 			if (!$id) {
 				throw new NotFoundException(__('Invalid reminder.'));
 			}
