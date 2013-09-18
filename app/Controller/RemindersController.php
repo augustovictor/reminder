@@ -163,11 +163,28 @@
 				return $this->redirect(array('action' => 'index'));
 			}
 
-			if(!$this->request->data) {
-				$this->request->data = $reminder;
-			}
 		}
 		// End close
+
+		public function reopen($id = null) {
+			if (!$id) {
+				throw new NotFoundException(__('Invalid reminder.'));
+			}
+
+			$reminder = $this->Reminder->findById($id);
+			if (!$reminder) {
+				throw new NotFoundException(__('Invalid reminder.'));
+			}
+
+			$this->Reminder->id = $id;
+			$this->Reminder->set('done', 0);
+			if ($this->Reminder->save($this->request->data)) {
+				$this->Session->setFlash(__('Reminder reopened.', 'default', array(), 'good'));
+				return $this->redirect(array('action' => 'index'));
+			}
+
+		}
+		// End reopen
 
 	}
 	// End RemindersController
