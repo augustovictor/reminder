@@ -96,7 +96,7 @@
 
 						<!-- Category -->
 						<td>
-							<?php echo $reminder['Reminder']['category_id']; ?>
+							<?php echo $reminder['Category']['title']; ?>
 						</td>
 						
 						<!-- Date -->
