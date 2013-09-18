@@ -2,7 +2,7 @@
 
 <?php echo $this->Html->link('Add reminder', array('controller' => 'reminders', 'action' => 'add'), array('class' => 'btn btn-mini btn-primary ')); ?>
 
-<h3> Reminders </h3>
+<h3> <p class="lead">Reminders</p> </h3>
 
 <?php if(empty($toDoReminders)) echo '<i> No reminders yet.</i>'; ?>
 
@@ -65,7 +65,7 @@
 <?php endif; ?>
 
 
-<h3> Closed reminders </h3>
+<h3> <p class="lead">Closed reminders</p> </h3>
 
 <?php if(empty($closedReminders)) echo '<i> No closed reminders yet.</i>'; ?>
 

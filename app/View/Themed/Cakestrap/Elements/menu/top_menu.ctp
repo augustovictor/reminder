@@ -9,7 +9,7 @@
 		<?php echo $this->Html->Link('Reminder system', array('controller' => 'reminders', 'action' => 'index'), array('class' => 'navbar-brand')); ?>
 	</div><!-- /.navbar-header -->
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
-		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav offset-3">
 			<?php if($this->Session->read('Auth.User')): ?>
 				<li class="active"><?php echo $this->Html->link('Reminders', array('controller' => 'reminders', 'action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link('Categories', array('controller' => 'categories', 'action' => 'index')); ?></li>
