@@ -27,6 +27,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<?php echo $cakeDescription ?>:
 			<?php echo $title_for_layout; ?>
 		</title>
+
 		<?php
 			echo $this->Html->meta('icon');
 
@@ -40,11 +41,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 			echo $this->Html->css('bootstrap.min');
 			// Uncomment this to enable the bootstrap gradient theme (Flat is way better though).
-			//echo $this->Html->css('bootstrap-theme.min');
+			echo $this->Html->css('bootstrap-min.theme');
 			echo $this->Html->css('core');
 
 			echo $this->fetch('css');
 			
+	        echo $this->Html->script('libs/js/jquery-ui-1.10.3.custom.js');
 			echo $this->Html->script('libs/jquery-1.10.2.min');
 			echo $this->Html->script('libs/bootstrap.min');
 			

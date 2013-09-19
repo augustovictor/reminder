@@ -4,7 +4,7 @@
 
 	class RemindersController extends AppController {
 
-		public $helpers = array('Html', 'Form', 'Session');
+		public $helpers = array('Html', 'Form' => array('className' => 'BootstrapForm'), 'Session');
 		public $components = array('Session');
 
 		public function isAuthorized($user) {

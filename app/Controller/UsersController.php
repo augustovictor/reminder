@@ -4,6 +4,8 @@
 
 	class UsersController extends AppController {
 
+		public $helpers = array('Html', 'Form'  => array('className' => 'BootstrapForm'));
+
 		public function beforeFilter() {
 		    parent::beforeFilter();
 		    $this->Auth->allow('add'); // Letting users register themselves
