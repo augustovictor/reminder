@@ -5,6 +5,23 @@
 	class CategoriesController extends AppController {
 		public $helpers = array('Html', 'Form');
 
+		public function isAuthorized($user) {
+		    // All registered users can view categories
+		    if ($this->action === 'view') {
+		        return true;
+		    }
+
+		    // The owner of a reminder can edit and delete it
+		    if (in_array($this->action, array('view', 'delete'))) {
+		        $reminderId = $this->request->params['pass'][0];
+		        if ($this->Reminder->isOwnedBy($reminderId, $user['id'])) {
+		            return true;
+		        }
+		    }
+
+		    return parent::isAuthorized($user);
+		}
+
 		public function index() {
 			$this->set('categories', $this->Category->find('all'));
 		}
