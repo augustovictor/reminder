@@ -35,6 +35,8 @@ class AppController extends Controller {
 
     public $theme = "Cakestrap";
 
+    public $helpers = array('Form' => array('className' => 'BootstrapForm'));
+
 	public $components = array(
         'Session',
         'Auth' => array(

@@ -36,4 +36,11 @@ class AppHelper extends Helper {
 		$categories = $this->set('categories', $this->Category->find('list'));
 		return $categories;
 	}
+
+	public function current_user_admin() {
+		if (AuthComponent::user('role') === 'admin') return true;
+		else return false;
+	}
+	// End current_user_admin
+
 }
