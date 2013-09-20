@@ -44,21 +44,22 @@ class AppController extends Controller {
         )
     );
 
-    public function beforeFilter() {
-        // $this->Auth->allow('index', 'view');
-        $this->Auth->allow('add', 'login');
+    public function isAuthorized($user) {
+
+        // Admin can access every action
+        // if (isset($user['role']) && ($user['role'] === 'customer' || $user['role'] === 'admin')) {
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+
+        // Default deny
+        return false;
     }
+    // End isAuthorized
 
-
-	public function isAuthorized($user) {
-
-    	// Admin can access every action
-    	if (isset($user['role']) && ($user['role'] === 'customer' || $user['role'] === 'admin')) {
-    	    return true;
-    	}
-
-    	// Default deny
-    	return false;
-	}
+    public function beforeFilter() {
+        $this->Auth->allow('index', 'view', 'login', 'logout');
+        // $this->Auth->allow('add', 'login');
+    }
 
 }

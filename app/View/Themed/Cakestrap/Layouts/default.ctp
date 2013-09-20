@@ -40,7 +40,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 			echo $this->Html->css('bootstrap.min');
 			// Uncomment this to enable the bootstrap gradient theme (Flat is way better though).
-			//echo $this->Html->css('bootstrap-theme.min');
+			echo $this->Html->css('bootstrap-theme.min');
 			echo $this->Html->css('core');
 
 			echo $this->fetch('css');
