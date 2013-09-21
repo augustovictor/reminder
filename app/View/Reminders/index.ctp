@@ -25,7 +25,7 @@
 
 			<tbody>
 				<?php foreach($toDoReminders as $reminder): ?>
-					<tr>
+					<tr class="<?php echo $this->Reminder->shouldBeClosed($reminder['Reminder']['date']); ?>">
 						<!-- Reminder -->
 						<td> 
 							<?php echo $this->Html->link(ucfirst($reminder['Reminder']['title']), array('controller' => 'reminders', 'action' => 'view', $reminder['Reminder']['id'])); ?>
@@ -50,7 +50,7 @@
 
 						<!-- Actions -->
 						<td class="text-right">
-							<?php echo $this->Html->link('Close', array('controller' => 'reminders', 'action' => 'close', $reminder['Reminder']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Close', array('controller' => 'reminders', 'action' => 'close', $reminder['Reminder']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
 							<?php echo $this->Html->link('Edit', array('controller' => 'reminders', 'action' => 'edit', $reminder['Reminder']['id']), array('class' => 'btn btn-success btn-xs')); ?>
 							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $reminder['Reminder']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
 						</td>

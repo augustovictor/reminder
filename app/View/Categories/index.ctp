@@ -1,6 +1,6 @@
 <h1> Categories </h1>
 
-<?php echo $this->Html->link('Add category', array('controller' => 'categories', 'action' => 'add'), array('class' => 'btn btn-primary')); ?>
+<?php if ($this->App->current_user_admin()) echo $this->Html->link('Add category', array('controller' => 'categories', 'action' => 'add'), array('class' => 'btn btn-primary')); ?>
 
 
 <?php if (empty($categories)): ?>
@@ -16,7 +16,9 @@
 			<thead>
 				<tr>
 					<th> <strong>Category</strong> </th>
-					<th class="text-right"> <strong>Actions</strong> </th>
+					<?php if ($this->App->current_user_admin()): ?>
+						<th class="text-right"> <strong>Actions</strong> </th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 
@@ -26,11 +28,12 @@
 						<td> 
 							<?php echo $this->Html->link($category['Category']['title'], array('controller' => 'categories', 'action' => 'view', $category['Category']['id'])); ?> 
 						</td>
-
-						<td class="text-right"> 
-							<?php echo $this->Html->link('Edit', array('controller' => 'categories', 'action' => 'edit', $category['Category']['id']), array('class' => 'btn btn-success btn-xs')); ?>
-							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $category['Category']['id']), array('class' => 'btn btn-danger btn-xs'), array('confirm' => 'Are you sure?')); ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td class="text-right"> 
+								<?php echo $this->Html->link('Edit', array('controller' => 'categories', 'action' => 'edit', $category['Category']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+								<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $category['Category']['id']), array('class' => 'btn btn-danger btn-xs'), array('confirm' => 'Are you sure?')); ?>
+							</td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

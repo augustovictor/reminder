@@ -4,7 +4,8 @@
 
 	class RemindersController extends AppController {
 
-		public $helpers = array('Html', 'Form', 'Session');
+		public $name = 'Reminders';
+		public $helpers = array('Html', 'Session', 'Reminder');
 		public $components = array('Session');
 
 		public function isAuthorized($user) {
@@ -27,6 +28,7 @@
 		// $this->set('categories', $this->Category->find('list'));
 
 		public function index() {
+
 			$order = 'date asc';
 			$current_user_id = $this->Auth->user('id');
 			$current_user_role = $this->Auth->user('role');
@@ -190,6 +192,12 @@
 
 		}
 		// End reopen
+
+		public function current_user_admin() {
+			if (AuthComponent::user('role') === 'admin') return true;
+			else return false;
+		}
+		// End current_user_admin
 
 	}
 	// End RemindersController

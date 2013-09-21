@@ -3,7 +3,9 @@
 	App::uses('AppController', 'Controller');
 
 	class CategoriesController extends AppController {
-		public $helpers = array('Html', 'Form');
+		public $helpers = array('Html');
+
+
 
 		public function index() {
 			$this->set('categories', $this->Category->find('all'));
