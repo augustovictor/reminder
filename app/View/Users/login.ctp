@@ -1,6 +1,4 @@
-<h1> Login </h1>
-
-<div class="users form">
+<div class="users form col-md-5">
 	<?php echo $this->Session->flash('auth'); ?>
 	<?php echo $this->Form->create('User'); ?>
 	    <fieldset>

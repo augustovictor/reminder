@@ -1,15 +1,16 @@
-<h1> Edit reminder: </h1>
+<div class="form col-md-5">
+<?php echo $this->Form->create('Reminder', array('role' => 'form')); ?>
+	<fieldset>
+		<legend> <?php echo __('Edit Reminder') ?> </legend>
+		<?php 
+			echo $this->Form->input('category_id', array('options' => array($categories)));
+			echo $this->Form->input('title');
+			echo $this->Form->input('description');
+			echo $this->Form->input('date', array('interval' => '15', 'minYear' => date('Y'), 'maxYear' => (date('Y') + 5) ));
+		?>
+	</fieldset>
 
-<?php  
+	<?php echo $this->Form->end('Save', array('class' => 'btn btn-success')); ?>
 
-	echo $this->Form->create('Reminder');
-	echo $this->Form->input('category_id', array('options' => array($categories)));
-	echo $this->Form->input('title');
-	echo $this->Form->input('description');
-	echo $this->Form->input('date');
-
-	echo $this->Form->input('id', array('type' => 'hidden'));
-
-	echo $this->Form->end('Update');
-
-?>
+</div>
+<!-- End form -->
