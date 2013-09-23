@@ -12,7 +12,7 @@
 		public function login() {
 		    if ($this->request->is('post')) {
 		        if ($this->Auth->login()) {
-		            return $this->redirect($this->Auth->redirect(array('controller' => 'reminders', 'action' => 'index')));
+		            return $this->redirect($this->Auth->redirect(array('controller' => 'antivirus', 'action' => 'index')));
 		        }
 		        $this->Session->setFlash(__('Invalid username or password, try again'));
 		    }
