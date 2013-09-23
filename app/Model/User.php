@@ -34,7 +34,7 @@
 		    return true;
 		}
 
-		public $hasMany = array('Antivirus');
+		public $hasMany = array('Antivirus', 'Battery');
 
 		// public $hasMany = array(
 		// 	'Reminder' => array(

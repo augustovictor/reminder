@@ -14,7 +14,7 @@
 
 				<li><?php echo $this->Html->link('Antivirus', array('controller' => 'antivirus', 'action' => 'index')); ?></li>
 
-				<li class="active"><?php echo $this->Html->link('Reminders', array('controller' => 'reminders', 'action' => 'index')); ?></li>
+				<li class="active"><?php echo $this->Html->link('Batteries', array('controller' => 'batteries', 'action' => 'index')); ?></li>
 
 				<!-- If user logged in -->
 				<li class="dropdown">

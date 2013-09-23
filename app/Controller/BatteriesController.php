@@ -2,18 +2,18 @@
 
 	App::uses('AppController', 'Controller');
 
-	class AntivirusController extends AppController {
-		public $name = 'Antivirus';
+	class BatteriesController extends AppController {
+		public $name = 'Battery';
 		public $helpers = array('Html');
 
 
 		public function index() {
-			$order = 'av_expiry_date asc';
+			$order = 'expiry_date asc';
 			$current_user_id = $this->Auth->user('id');
 			$current_user_role = $this->Auth->user('role');
 
 			if($current_user_role === 'customer') {
-				$this->set('toDoAntivirus', $this->Antivirus->find('all', 
+				$this->set('toDoBattery', $this->Battery->find('all', 
 						array(
 							'order' => $order,
 							'conditions' => array(
@@ -24,7 +24,7 @@
 					) //End find
 				); // End set
 
-				$this->set('closedAntivirus', $this->Antivirus->find('all', 
+				$this->set('closedBattery', $this->Battery->find('all', 
 					array('order' => $order, 'conditions' => array(
 								'user_id' => $current_user_id, 
 								'done' => '1'
@@ -36,7 +36,7 @@
 			// End if customer
 
 			if ($current_user_role === 'admin') {
-				$this->set('toDoAntivirus', $this->Antivirus->find('all', 
+				$this->set('toDoBattery', $this->Battery->find('all', 
 						array(
 							'order' => $order,
 							'conditions' => array(
@@ -46,7 +46,7 @@
 					) //End find
 				); // End set
 
-				$this->set('closedAntivirus', $this->Antivirus->find('all', 
+				$this->set('closedBattery', $this->Battery->find('all', 
 					array('order' => $order, 'conditions' => array(
 								'done' => '1'
 							) //End conditions
@@ -61,12 +61,12 @@
 		public function add() {
 
 			if ($this->request->is('post')) {
-				$this->request->data['Antivirus']['user_id'] = $this->Auth->user('id');
-				if ($this->Antivirus->save($this->request->data)) {
-					$this->Session->setFlash(__('Your antivirus reminder has been saved.'));
+				$this->request->data['Battery']['user_id'] = $this->Auth->user('id');
+				if ($this->Battery->save($this->request->data)) {
+					$this->Session->setFlash(__('Your battery reminder has been saved.'));
 					return $this->redirect(array('action' => 'index'));
 				}
-				$this->Session->setFlash(__('Unable to add your antivirus reminder.'));
+				$this->Session->setFlash(__('Unable to add your battery reminder.'));
 			}
 		}
 		// End add
@@ -74,25 +74,25 @@
 		public function edit($id = null) {
 
 			if (!$id) {
-				throw new NotFoundException(__('Invalid antivirus reminder.'));
+				throw new NotFoundException(__('Invalid battery reminder.'));
 			}
 
-			$antivirus = $this->Antivirus->findById($id);
-			if (!$antivirus) {
-				throw new NotFoundException(__('Invalid antivirus reminder.'));
+			$battery = $this->Battery->findById($id);
+			if (!$battery) {
+				throw new NotFoundException(__('Invalid battery reminder.'));
 			}
 
 			if ($this->request->is('post') || $this->request->is('put')) {
-				$this->Antivirus->id = $id;
-				if ($this->Antivirus->save($this->request->data)) {
-					$this->Session->setFlash(__('Your antivirus reminder has been updated.'));
+				$this->Battery->id = $id;
+				if ($this->Battery->save($this->request->data)) {
+					$this->Session->setFlash(__('Your battery reminder has been updated.'));
 					return $this->redirect(array('action' => 'index'));
 				}
-				$this->Session->setFlash(__('Unable to update antivirus reminder.'));
+				$this->Session->setFlash(__('Unable to update battery reminder.'));
 			}
 
 			if(!$this->request->data) {
-				$this->request->data = $antivirus;
+				$this->request->data = $battery;
 			}
 		}
 		// End edit
@@ -102,8 +102,8 @@
 				throw new MethodNotAllowedException();
 			}
 
-			if($this->Antivirus->delete($id)) {
-				$this->Session->setFlash(__('The antivirus reminder id: %s has been deleted.', h($id)));
+			if($this->Battery->delete($id)) {
+				$this->Session->setFlash(__('The battery reminder id: %s has been deleted.', h($id)));
 				return $this->redirect(array('action' => 'index'));
 			}
 		}
@@ -114,15 +114,15 @@
 				throw new NotFoundException(__('Invalid reminder.'));
 			}
 
-			$reminder = $this->Antivirus->findById($id);
+			$reminder = $this->Battery->findById($id);
 			if (!$reminder) {
 				throw new NotFoundException(__('Invalid reminder.'));
 			}
 
-			$this->Antivirus->id = $id;
-			$this->Antivirus->set('done', 1);
-			if ($this->Antivirus->save($this->request->data)) {
-				$this->Session->setFlash(__('Antivirus closed.'));
+			$this->Battery->id = $id;
+			$this->Battery->set('done', 1);
+			if ($this->Battery->save($this->request->data)) {
+				$this->Session->setFlash(__('Battery closed.'));
 				return $this->redirect(array('action' => 'index'));
 			}
 
@@ -134,15 +134,15 @@
 				throw new NotFoundException(__('Invalid reminder.'));
 			}
 
-			$reminder = $this->Antivirus->findById($id);
+			$reminder = $this->Battery->findById($id);
 			if (!$reminder) {
 				throw new NotFoundException(__('Invalid reminder.'));
 			}
 
-			$this->Antivirus->id = $id;
-			$this->Antivirus->set('done', 0);
-			if ($this->Antivirus->save($this->request->data)) {
-				$this->Session->setFlash(__('Antivirus reopened.', 'default', array(), 'good'));
+			$this->Battery->id = $id;
+			$this->Battery->set('done', 0);
+			if ($this->Battery->save($this->request->data)) {
+				$this->Session->setFlash(__('Battery reopened.', 'default', array(), 'good'));
 				return $this->redirect(array('action' => 'index'));
 			}
 
@@ -150,6 +150,6 @@
 		// End reopen
 
 	}
-	// End AntivirusController
+	// End BatteriesController
 
 ?>

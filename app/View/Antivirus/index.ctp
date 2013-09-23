@@ -4,7 +4,7 @@
 
 <h3> <p class="lead">Open Antivirus</p> </h3>
 
-<?php if(empty($toDoAntivirus)) echo '<i> No antivirus yet.</i>'; ?>
+<?php if(empty($toDoAntivirus)) echo '<i> No antivirus reminder yet.</i>'; ?>
 
 <?php if($toDoAntivirus): ?>
 
