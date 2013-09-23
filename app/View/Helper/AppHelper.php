@@ -43,4 +43,12 @@ class AppHelper extends Helper {
 	}
 	// End current_user_admin
 
+	public function shouldBeClosed($date) {
+		if (date("Y-m-d H:i:s") > $date) {
+			return 'danger';
+		}
+		return '';
+	}
+	// End shouldBeClosed
+
 }

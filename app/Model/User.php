@@ -34,14 +34,16 @@
 		    return true;
 		}
 
-		public $hasMany = array(
-			'Reminder' => array(
-				'className' => 'Reminder',
-				'foreignKey' => 'user_id',
-	            'order' => 'Reminder.date DESC',
-	            'dependent' => true
-			)
-		);
+		public $hasMany = array('Antivirus');
+
+		// public $hasMany = array(
+		// 	'Reminder' => array(
+		// 		'className' => 'Reminder',
+		// 		'foreignKey' => 'user_id',
+	 //            'order' => 'Reminder.date DESC',
+	 //            'dependent' => true
+		// 	)
+		// );
 
 	}
 	// End User
