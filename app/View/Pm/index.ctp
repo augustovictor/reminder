@@ -1,0 +1,112 @@
+<h1> Pms </h1>
+
+<?php echo $this->Html->link('Add pm reminder', array('controller' => 'pms', 'action' => 'add'), array('class' => 'btn btn-mini btn-primary ')); ?>
+
+<h3> <p class="lead">Open Pm</p> </h3>
+
+<?php if(empty($toDoPm)) echo '<i> No pm reminders yet.</i>'; ?>
+
+<?php if($toDoPm): ?>
+
+	<div class="table-responsive">
+
+		<table class='table table-striped table-condensed table-hover'>
+
+					
+			<thead>
+				<tr>
+					<th> Customer </th>
+					<th> Date </th>
+					<th> Location </th>
+					<th class="text-right"> Actions </th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<?php foreach($toDoPm as $pm): ?>
+					<tr class="<?php echo $this->App->shouldBeClosed($pm['Pm']['date']); ?>">
+						<!-- Costumer -->
+						<td>
+							<?php echo $pm['User']['username']; ?>
+						</td>
+
+						<!-- Date -->
+						<td>
+							<?php echo date('l jS \of F', strtotime($pm['Pm']['date'])); ?>
+						</td>
+
+						<!-- Location -->
+						<td>
+							<?php echo $pm['Pm']['location']; ?>
+						</td>
+
+						<!-- Actions -->
+						<td class="text-right">
+							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Close', array('controller' => 'pms', 'action' => 'close', $pm['Pm']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+							<?php echo $this->Html->link('Edit', array('controller' => 'pms', 'action' => 'edit', $pm['Pm']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $pm['Pm']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+						</td>
+					</tr>
+				<?php endforeach;?>
+			</tbody>
+
+		</table>
+		<!-- End toDoPm -->
+	</div>
+	<!-- End table-responsive -->
+<?php endif; ?>
+
+
+<h3> <p class="lead">Closed pm</p> </h3>
+
+<?php if(empty($closedPm)) echo '<i> No closed pm reminders yet.</i>'; ?>
+
+<?php if ($closedPm): ?>
+
+	<div class="table-responsive">
+
+
+		<table class='table table-striped table-condensed table-hover'>
+		
+			<thead>
+				<tr>
+					<th> Customer </th>
+					<th> Date </th>
+					<th> Location </th>
+					<th class="text-right"> Actions </th>
+				</tr>
+			</thead>
+		
+			<tbody>
+				<?php foreach($closedPm as $pm): ?>
+					<tr>
+						<!-- Costumer -->
+						<td>
+							<?php echo $pm['User']['username']; ?>
+						</td>
+
+						<!-- Date -->
+						<td>
+							<?php echo date('l jS \of F', strtotime($pm['Pm']['date'])); ?>
+						</td>
+
+						<!-- Location -->
+						<td>
+							<?php echo $pm['Pm']['location']; ?>
+						</td>
+
+						<!-- Actions -->
+						<td class="text-right">
+							<?php echo $this->Html->link('Reopen', array('controller' => 'pms', 'action' => 'reopen', $pm['Pm']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+							<?php echo $this->Html->link('Edit', array('controller' => 'pms', 'action' => 'edit', $pm['Pm']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $pm['Pm']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		
+		</table>
+		<!-- End donePm -->
+	</div>
+	<!-- End table-responsive -->
+<?php endif; ?>

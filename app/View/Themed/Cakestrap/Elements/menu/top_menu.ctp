@@ -12,9 +12,11 @@
 		<ul class="nav navbar-nav offset-3">
 			<?php if($this->Session->read('Auth.User')): ?>
 
-				<li><?php echo $this->Html->link('Antivirus', array('controller' => 'antivirus', 'action' => 'index')); ?></li>
+				<li class="active"> <?php echo $this->Html->link('Antivirus', array('controller' => 'antivirus', 'action' => 'index')); ?></li>
 
-				<li class="active"><?php echo $this->Html->link('Batteries', array('controller' => 'batteries', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link('Batteries', array('controller' => 'batteries', 'action' => 'index')); ?></li>
+
+				<li><?php echo $this->Html->link('Pms', array('controller' => 'pms', 'action' => 'index')); ?></li>
 
 				<!-- If user logged in -->
 				<li class="dropdown">
