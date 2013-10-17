@@ -7,7 +7,7 @@
 		<thead>
 			<tr>
 				<th> <strong> Username </strong> </th>
-				<th> <strong> Password </strong> </th>
+				<th> <strong> Email </strong> </th>
 			</tr>
 		</thead>
 
@@ -15,7 +15,7 @@
 			<?php foreach($users as $user): ?>
 				<tr>
 					<td> <?php echo $this->Html->link($user['User']['username'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?> </td>
-					<td> <?php echo $user['User']['password']; ?> </td>
+					<td> <?php echo $user['User']['email']; ?> </td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
