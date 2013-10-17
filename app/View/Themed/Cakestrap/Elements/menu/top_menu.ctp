@@ -18,6 +18,8 @@
 
 				<li><?php echo $this->Html->link('Pms', array('controller' => 'pms', 'action' => 'index')); ?></li>
 
+				<li><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
+
 				<!-- If user logged in -->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 

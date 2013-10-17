@@ -23,15 +23,29 @@
 		}
 
 	    public function index() {
-	        $this->set('users', $this->User->find('all'));
+	        $this->set('users', $this->User->find('all', array('order' => 'username asc')));
 	    }
 
 	    public function view($id = null) {
+
+	    	$this->loadModel('Battery');
+
+			$current_user_role = $this->Auth->user('role');
+
 	        $this->User->id = $id;
 	        if (!$this->User->exists()) {
 	            throw new NotFoundException(__('Invalid user'));
 	        }
+	        
 	        $this->set('user', $this->User->read(null, $id));
+	        $this->set('batteries', $this->Battery->find(
+		        	'all', array(
+				        	'conditions' => array(
+					        	'user_id' => $id
+				        	)//End conditions
+			        	)//End find array arguments
+		        )//End find arguments
+	        );
 	    }
 
 	    public function add() {

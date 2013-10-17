@@ -1,21 +1,25 @@
 <h1> Users </h1>
 
-<table>
+<div class="table-responsive">
 
-	<thead>
-		<tr>
-			<th> <strong> User </strong> </th>
-			<th> <strong> Password </strong> </th>
-		</tr>
-	</thead>
+	<table class='table table-striped table-condensed table-hover'>
 
-	<tbody>
-		<?php foreach($users as $user): ?>
+		<thead>
 			<tr>
-				<td> <?php echo $user['User']['username']; ?> </td>
-				<td> <?php echo $user['User']['password']; ?> </td>
+				<th> <strong> Username </strong> </th>
+				<th> <strong> Password </strong> </th>
 			</tr>
-		<?php endforeach; ?>
-	</tbody>
+		</thead>
 
-</table>
+		<tbody>
+			<?php foreach($users as $user): ?>
+				<tr>
+					<td> <?php echo $this->Html->link($user['User']['username'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?> </td>
+					<td> <?php echo $user['User']['password']; ?> </td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+
+	</table>
+</div>
+<!-- End table-responsive -->
