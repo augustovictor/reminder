@@ -3,6 +3,7 @@
 	<fieldset>
 		<legend> <?php echo __('Add antivirus reminder') ?> </legend>
 		<?php 
+			if ($this->App->current_user_admin()) echo $this->Form->input('user_id');
 			echo $this->Form->input('av_id', array('type' => 'number'));
 			echo $this->Form->input('num_users');
 			echo $this->Form->input('renew_cost');

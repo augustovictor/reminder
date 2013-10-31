@@ -15,7 +15,7 @@
 					
 			<thead>
 				<tr>
-					<th> Customer </th>
+					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
 					<th> Battery id </th>
 					<th> Expiry date </th>
 					<th> Model </th>
@@ -29,9 +29,11 @@
 				<?php foreach($toDoBattery as $battery): ?>
 					<tr class="<?php echo $this->App->shouldBeClosed($battery['Battery']['expiry_date']); ?>">
 						<!-- Costumer -->
-						<td>
-							<?php echo $battery['User']['username']; ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td>
+								<?php echo $this->Html->link($battery['User']['username'], array('controller' => 'users', 'action' => 'view', $battery['User']['id'])); ?>
+							</td>
+						<?php endif; ?>
 
 						<!-- Battery id -->
 						<td>
@@ -88,7 +90,7 @@
 		
 			<thead>
 				<tr>
-					<th> Customer </th>
+					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
 					<th> Battery id </th>
 					<th> Expiry date </th>
 					<th> Model </th>
@@ -102,9 +104,11 @@
 				<?php foreach($closedBattery as $battery): ?>
 					<tr>
 						<!-- Costumer -->
-						<td>
-							<?php echo $battery['User']['username']; ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td>
+								<?php echo $this->Html->link($battery['User']['username'], array('controller' => 'users', 'action' => 'view', $battery['User']['id'])); ?>
+							</td>
+						<?php endif; ?>
 
 						<!-- Battery id -->
 						<td>
@@ -133,7 +137,7 @@
 
 						<!-- Actions -->
 						<td class="text-right">
-							<?php echo $this->Html->link('Reopen', array('controller' => 'batteries', 'action' => 'reopen', $battery['Battery']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'batteries', 'action' => 'reopen', $battery['Battery']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
 							<?php echo $this->Html->link('Edit', array('controller' => 'batteries', 'action' => 'edit', $battery['Battery']['id']), array('class' => 'btn btn-success btn-xs')); ?>
 							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $battery['Battery']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
 						</td>

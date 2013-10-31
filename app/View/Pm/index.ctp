@@ -15,7 +15,7 @@
 					
 			<thead>
 				<tr>
-					<th> Customer </th>
+					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
 					<th> Date </th>
 					<th> Location </th>
 					<th class="text-right"> Actions </th>
@@ -26,9 +26,11 @@
 				<?php foreach($toDoPm as $pm): ?>
 					<tr class="<?php echo $this->App->shouldBeClosed($pm['Pm']['date']); ?>">
 						<!-- Costumer -->
-						<td>
-							<?php echo $pm['User']['username']; ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td>
+								<?php echo $this->Html->link($pm['User']['username'], array('controller' => 'users', 'action' => 'view', $pm['User']['id'])); ?>
+							</td>
+						<?php endif; ?>
 
 						<!-- Date -->
 						<td>
@@ -70,7 +72,7 @@
 		
 			<thead>
 				<tr>
-					<th> Customer </th>
+					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
 					<th> Date </th>
 					<th> Location </th>
 					<th class="text-right"> Actions </th>
@@ -81,9 +83,11 @@
 				<?php foreach($closedPm as $pm): ?>
 					<tr>
 						<!-- Costumer -->
-						<td>
-							<?php echo $pm['User']['username']; ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td>
+								<?php echo $this->Html->link($pm['User']['username'], array('controller' => 'users', 'action' => 'view', $pm['User']['id'])); ?>
+							</td>
+						<?php endif; ?>
 
 						<!-- Date -->
 						<td>
@@ -97,7 +101,7 @@
 
 						<!-- Actions -->
 						<td class="text-right">
-							<?php echo $this->Html->link('Reopen', array('controller' => 'pms', 'action' => 'reopen', $pm['Pm']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'pms', 'action' => 'reopen', $pm['Pm']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
 							<?php echo $this->Html->link('Edit', array('controller' => 'pms', 'action' => 'edit', $pm['Pm']['id']), array('class' => 'btn btn-success btn-xs')); ?>
 							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $pm['Pm']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
 						</td>

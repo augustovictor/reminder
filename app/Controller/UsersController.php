@@ -28,7 +28,9 @@
 
 	    public function view($id = null) {
 
+	    	$this->loadModel('Antivirus');
 	    	$this->loadModel('Battery');
+	    	$this->loadModel('Pm');
 
 			$current_user_role = $this->Auth->user('role');
 
@@ -38,7 +40,29 @@
 	        }
 	        
 	        $this->set('user', $this->User->read(null, $id));
+
+	        //Antivius
+	        $this->set('antivirus', $this->Antivirus->find(
+		        	'all', array(
+				        	'conditions' => array(
+					        	'user_id' => $id
+				        	)//End conditions
+			        	)//End find array arguments
+		        )//End find arguments
+	        );
+
+	        //Battery
 	        $this->set('batteries', $this->Battery->find(
+		        	'all', array(
+				        	'conditions' => array(
+					        	'user_id' => $id
+				        	)//End conditions
+			        	)//End find array arguments
+		        )//End find arguments
+	        );
+
+	        //Pm
+	        $this->set('pms', $this->Pm->find(
 		        	'all', array(
 				        	'conditions' => array(
 					        	'user_id' => $id

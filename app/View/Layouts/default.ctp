@@ -17,7 +17,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$cakeDescription = __d('Kalax', 'Reminder System');
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $this->Html->meta('icon');
+		// echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
 

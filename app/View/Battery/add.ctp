@@ -3,6 +3,7 @@
 	<fieldset>
 		<legend> <?php echo __('Add battery reminder') ?> </legend>
 		<?php 
+			if ($this->App->current_user_admin()) echo $this->Form->input('user_id');
 			echo $this->Form->input('batt_id', array('type' => 'number'));
 			echo $this->Form->input('model');
 			echo $this->Form->input('expiry_date', array('dateFormat' => 'MDY', 'interval' => '15', 'minYear' => date('Y'), 'maxYear' => (date('Y') + 5) ));

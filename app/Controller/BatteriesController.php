@@ -60,8 +60,12 @@
 
 		public function add() {
 
+			$this->set('users', $this->Battery->User->find('list', array('order' => 'username')));
+
 			if ($this->request->is('post')) {
-				$this->request->data['Battery']['user_id'] = $this->Auth->user('id');
+				if($this->Auth->user('role') !== 'admin') 
+					$this->request->data['Battery']['user_id'] = $this->Auth->user('id');
+
 				if ($this->Battery->save($this->request->data)) {
 					$this->Session->setFlash(__('Your battery reminder has been saved.'));
 					return $this->redirect(array('action' => 'index'));
@@ -72,6 +76,8 @@
 		// End add
 
 		public function edit($id = null) {
+
+			$this->set('users', $this->Battery->User->find('list', array('order' => 'username')));
 
 			if (!$id) {
 				throw new NotFoundException(__('Invalid battery reminder.'));

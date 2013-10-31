@@ -8,14 +8,26 @@
 			<tr>
 				<th> <strong> Username </strong> </th>
 				<th> <strong> Email </strong> </th>
+				<th> <strong> Actions </strong> </th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<?php foreach($users as $user): ?>
 				<tr>
-					<td> <?php echo $this->Html->link($user['User']['username'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?> </td>
+					<!-- User -->
+					<td> 
+						<?php echo $this->Html->link($user['User']['username'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?> 
+					</td>
+
+					<!-- Email -->
 					<td> <?php echo $user['User']['email']; ?> </td>
+
+					<!-- Actions -->
+					<td class="text-right">
+						<?php echo $this->Html->link('Edit', array('controller' => 'users', 'action' => 'edit', $user['User']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+						<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $user['User']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+					</td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>

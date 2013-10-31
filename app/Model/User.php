@@ -4,19 +4,36 @@
 	App::uses('AuthComponent', 'Controller/Component');
 
 	class User extends AppModel {
+
+		public $displayField = 'username';
+
 		public $validate = array(
 	        'username' => array(
+	        	'unique' => array(
+	        			'rule' => 'isUnique',
+	        			'required' => 'create',	
+	        			'message' => 'Username not available.'
+	        		),
 	            'required' => array(
 	                'rule' => array('notEmpty'),
 	                'message' => 'A username is required'
 	            )
 	        ),
+
+	        'email' => array(
+	            'required' => array(
+	                'rule' => array('notEmpty'),
+	                'message' => 'Email is required'
+	            )
+	        ),
+
 	        'password' => array(
 	            'required' => array(
 	                'rule' => array('notEmpty'),
 	                'message' => 'A password is required'
 	            )
 	        ),
+
 	        'role' => array(
 	            'valid' => array(
 	                'rule' => array('inList', array('admin', 'customer')),

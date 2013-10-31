@@ -60,8 +60,12 @@
 
 		public function add() {
 
+			$this->set('users', $this->Antivirus->User->find('list', array('order' => 'username')));
+
 			if ($this->request->is('post')) {
-				$this->request->data['Antivirus']['user_id'] = $this->Auth->user('id');
+				if($this->Auth->user('role') !== 'admin') 
+					$this->request->data['Antivirus']['user_id'] = $this->Auth->user('id');
+
 				if ($this->Antivirus->save($this->request->data)) {
 					$this->Session->setFlash(__('Your antivirus reminder has been saved.'));
 					return $this->redirect(array('action' => 'index'));
@@ -72,6 +76,8 @@
 		// End add
 
 		public function edit($id = null) {
+
+			$this->set('users', $this->Antivirus->User->find('list', array('order' => 'username')));
 
 			if (!$id) {
 				throw new NotFoundException(__('Invalid antivirus reminder.'));

@@ -15,7 +15,7 @@
 					
 			<thead>
 				<tr>
-					<th> Customer </th>
+					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
 					<th> Antivirus id </th>
 					<th> Expiry date </th>
 					<th> Num users </th>
@@ -29,9 +29,11 @@
 				<?php foreach($toDoAntivirus as $antivirus): ?>
 					<tr class="<?php echo $this->App->shouldBeClosed($antivirus['Antivirus']['av_expiry_date']); ?>">
 						<!-- Costumer -->
-						<td>
-							<?php echo $antivirus['User']['username']; ?>
-						</td>
+					<?php if ($this->App->current_user_admin()): ?>
+							<td>
+								<?php echo $this->Html->link($antivirus['User']['username'], array('controller' => 'users', 'action' => 'view', $antivirus['User']['id'])); ?>
+							</td>
+						<?php endif; ?>
 
 						<!-- Antivirus id -->
 						<td>
@@ -88,7 +90,7 @@
 		
 			<thead>
 				<tr>
-					<th> Customer </th>
+					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
 					<th> Antivirus id </th>
 					<th> Expiry date </th>
 					<th> Num users </th>
@@ -102,9 +104,11 @@
 				<?php foreach($closedAntivirus as $antivirus): ?>
 					<tr>
 						<!-- Costumer -->
-						<td>
-							<?php echo $antivirus['User']['username']; ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td>
+							<?php echo $this->Html->link($antivirus['User']['username'], array('controller' => 'users', 'action' => 'view', $antivirus['User']['id'])); ?>
+							</td>
+						<?php endif; ?>
 
 						<!-- Antivirus id -->
 						<td>
@@ -133,7 +137,7 @@
 
 						<!-- Actions -->
 						<td class="text-right">
-							<?php echo $this->Html->link('Reopen', array('controller' => 'antivirus', 'action' => 'reopen', $antivirus['Antivirus']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'antivirus', 'action' => 'reopen', $antivirus['Antivirus']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
 							<?php echo $this->Html->link('Edit', array('controller' => 'antivirus', 'action' => 'edit', $antivirus['Antivirus']['id']), array('class' => 'btn btn-success btn-xs')); ?>
 							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $antivirus['Antivirus']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
 						</td>

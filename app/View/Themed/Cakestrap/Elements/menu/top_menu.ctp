@@ -18,7 +18,9 @@
 
 				<li><?php echo $this->Html->link('Pms', array('controller' => 'pms', 'action' => 'index')); ?></li>
 
-				<li><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
+				<?php if ($this->App->current_user_admin()): ?>
+					<li><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
+				<?php endif; ?>
 
 				<!-- If user logged in -->
 				<li class="dropdown">
