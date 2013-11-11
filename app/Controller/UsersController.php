@@ -45,7 +45,8 @@
 	        $this->set('antivirus', $this->Antivirus->find(
 		        	'all', array(
 				        	'conditions' => array(
-					        	'user_id' => $id
+					        	'user_id' => $id,
+					        	'done' => False
 				        	)//End conditions
 			        	)//End find array arguments
 		        )//End find arguments
@@ -55,7 +56,8 @@
 	        $this->set('batteries', $this->Battery->find(
 		        	'all', array(
 				        	'conditions' => array(
-					        	'user_id' => $id
+					        	'user_id' => $id,
+					        	'done' => False
 				        	)//End conditions
 			        	)//End find array arguments
 		        )//End find arguments
@@ -65,7 +67,8 @@
 	        $this->set('pms', $this->Pm->find(
 		        	'all', array(
 				        	'conditions' => array(
-					        	'user_id' => $id
+					        	'user_id' => $id,
+					        	'done' => False
 				        	)//End conditions
 			        	)//End find array arguments
 		        )//End find arguments
