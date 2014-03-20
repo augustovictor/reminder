@@ -1,5 +1,10 @@
 <h1> Users </h1>
 
+<?php echo $this->Html->link(__('Add user'), array('action' => 'add'), array('class' => 'btn btn-primary')); ?>
+
+<br>
+<br>
+
 <div class="table-responsive">
 
 	<table class='table table-striped table-condensed table-hover'>

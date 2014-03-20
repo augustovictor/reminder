@@ -15,12 +15,12 @@
 					
 			<thead>
 				<tr>
-					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
-					<th> Antivirus id </th>
-					<th> Expiry date </th>
-					<th> Num users </th>
-					<th> Renew cost </th>
-					<th> Location </th>
+					<?php if ($this->App->current_user_admin()) echo '<th>' . $this->Paginator->sort('User.username', 'Client') . '</th>' ;?>
+					<th> <?php echo $this->Paginator->sort('username', 'Av username'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('expiry_date'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('num_users'); ?></th>
+					<th> <?php echo $this->Paginator->sort('renew_cost'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('location'); ?> </th>
 					<th class="text-right"> Actions </th>
 				</tr>
 			</thead>
@@ -32,12 +32,21 @@
 					<?php if ($this->App->current_user_admin()): ?>
 							<td>
 								<?php echo $this->Html->link($antivirus['User']['username'], array('controller' => 'users', 'action' => 'view', $antivirus['User']['id'])); ?>
+								<?php
+									// $date1 = date_create(date("Y-m-d"));
+									// $date2 = date_create($antivirus['Antivirus']['av_expiry_date']);
+									// $diff  = date_diff($date1, $date2);
+									// $days  = $diff->format("%a days");
+
+									// if ($days == 30 and $antivirus['Antivirus']['alert']) echo '30 days';
+									// if ($days == 7 and $antivirus['Antivirus']['alert']) echo '7 days';
+								?>
 							</td>
 						<?php endif; ?>
 
 						<!-- Antivirus id -->
 						<td>
-							<?php echo $antivirus['Antivirus']['av_id']; ?>
+							<?php echo $antivirus['Antivirus']['username']; ?>
 						</td>
 
 						<!-- Expiry date -->
@@ -91,7 +100,7 @@
 			<thead>
 				<tr>
 					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
-					<th> Antivirus id </th>
+					<th> Antivirus user </th>
 					<th> Expiry date </th>
 					<th> Num users </th>
 					<th> Renew cost </th>
@@ -112,7 +121,7 @@
 
 						<!-- Antivirus id -->
 						<td>
-							<?php echo $antivirus['Antivirus']['av_id']; ?>
+							<?php echo $antivirus['Antivirus']['username']; ?>
 						</td>
 
 						<!-- Expiry date -->

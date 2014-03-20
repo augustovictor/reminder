@@ -19,7 +19,7 @@
 
 			<thead>
 					<tr>
-						<th> Antivirus id </th>
+						<th> Antivirus user </th>
 						<th> Expiry date </th>
 						<th> Num users </th>
 						<th> Renew cost </th>
@@ -33,7 +33,7 @@
 						<tr class="<?php echo $this->App->shouldBeClosed($antivirus['Antivirus']['av_expiry_date']); ?>">
 							<!-- Antivirus id -->
 							<td>
-								<?php echo $antivirus['Antivirus']['av_id']; ?>
+								<?php echo $antivirus['Antivirus']['username']; ?>
 							</td>
 
 							<!-- Expiry date -->

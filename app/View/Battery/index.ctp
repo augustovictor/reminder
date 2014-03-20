@@ -16,7 +16,6 @@
 			<thead>
 				<tr>
 					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
-					<th> Battery id </th>
 					<th> Expiry date </th>
 					<th> Model </th>
 					<th> Replace cost </th>
@@ -34,11 +33,6 @@
 								<?php echo $this->Html->link($battery['User']['username'], array('controller' => 'users', 'action' => 'view', $battery['User']['id'])); ?>
 							</td>
 						<?php endif; ?>
-
-						<!-- Battery id -->
-						<td>
-							<?php echo $battery['Battery']['batt_id']; ?>
-						</td>
 
 						<!-- Expiry date -->
 						<td>
@@ -91,7 +85,6 @@
 			<thead>
 				<tr>
 					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
-					<th> Battery id </th>
 					<th> Expiry date </th>
 					<th> Model </th>
 					<th> Replace cost </th>
@@ -109,11 +102,6 @@
 								<?php echo $this->Html->link($battery['User']['username'], array('controller' => 'users', 'action' => 'view', $battery['User']['id'])); ?>
 							</td>
 						<?php endif; ?>
-
-						<!-- Battery id -->
-						<td>
-							<?php echo $battery['Battery']['batt_id']; ?>
-						</td>
 
 						<!-- Expiry date -->
 						<td>

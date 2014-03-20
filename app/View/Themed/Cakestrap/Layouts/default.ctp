@@ -42,11 +42,14 @@ $cakeDescription = __d('Kalax', 'Kalax - Reminder System');
 			// Uncomment this to enable the bootstrap gradient theme (Flat is way better though).
 			echo $this->Html->css('bootstrap-theme.min');
 			echo $this->Html->css('core');
+			echo $this->Html->css('jquery-ui-1.10.3.custom');
 
 			echo $this->fetch('css');
 			
 			echo $this->Html->script('libs/jquery-1.10.2.min');
 			echo $this->Html->script('libs/bootstrap.min');
+			echo $this->Html->script('jquery-ui-1.10.3.custom');
+			echo $this->Html->script('jquery-ui-1.10.3.custom.min');
 			
 			echo $this->fetch('script');
 		?>
