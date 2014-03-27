@@ -51,7 +51,7 @@
 
 						<!-- Expiry date -->
 						<td>
-							<?php echo date('l jS \of F', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
+							<?php echo date('Y - l jS \of F', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
 						</td>
 
 						<!-- Num users -->
@@ -126,7 +126,7 @@
 
 						<!-- Expiry date -->
 						<td>
-							<?php echo date('l jS \of F', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
+							<?php echo date('Y - l jS \of F', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
 						</td>
 
 						<!-- Num users -->

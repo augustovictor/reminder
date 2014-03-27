@@ -4,15 +4,17 @@
 
 	class UsersController extends AppController {
 
+		var $components = array('Email', 'Paginator');
+
 		public function beforeFilter() {
 		    parent::beforeFilter();
-		    $this->Auth->allow('add'); // Letting users register themselves
+		    // $this->Auth->allow('add'); // Letting users register themselves
 		}
 
 		public function login() {
 		    if ($this->request->is('post')) {
 		        if ($this->Auth->login()) {
-		            return $this->redirect($this->Auth->redirect(array('controller' => 'antivirus', 'action' => 'index')));
+		            return $this->redirect($this->Auth->redirect(array('controller' => 'users', 'action' => 'index')));
 		        }
 		        $this->Session->setFlash(__('Invalid username or password, try again'));
 		    }
@@ -23,11 +25,17 @@
 		}
 
 	    public function index() {
-	        $this->set('users', $this->User->find('all', array('order' => 'username asc')));
+	    	$this->User->recursive = 0;
+	    	$this->Paginator->settings = array(
+	    		'order' => array('User.username' => 'asc'),
+	    		'limit' => 100000,
+	    	);
+	    	$this->set('users', $this->Paginator->paginate());
+	        // $this->set('users', $this->User->find('all', array('order' => 'username asc')));
 	    }
 
 	    public function view($id = null) {
-
+	    	$this->User->recursive = 0;
 	    	$this->loadModel('Antivirus');
 	    	$this->loadModel('Battery');
 	    	$this->loadModel('Pm');

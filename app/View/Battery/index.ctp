@@ -15,11 +15,11 @@
 					
 			<thead>
 				<tr>
-					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
-					<th> Expiry date </th>
-					<th> Model </th>
-					<th> Replace cost </th>
-					<th> Location </th>
+					<?php if ($this->App->current_user_admin()) echo '<th>' . $this->Paginator->sort('User.username', 'Client') . '</th>'; ?>
+					<th> <?php echo $this->Paginator->sort('expiry_date'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('model'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('replace_cost'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('location'); ?> </th>
 					<th class="text-right"> Actions </th>
 				</tr>
 			</thead>
@@ -36,7 +36,7 @@
 
 						<!-- Expiry date -->
 						<td>
-							<?php echo date('l jS \of F', strtotime($battery['Battery']['expiry_date'])); ?>
+							<?php echo date('Y - l jS \of F', strtotime($battery['Battery']['expiry_date'])); ?>
 						</td>
 
 						<!-- Model -->
@@ -105,7 +105,7 @@
 
 						<!-- Expiry date -->
 						<td>
-							<?php echo date('l jS \of F', strtotime($battery['Battery']['expiry_date'])); ?>
+							<?php echo date('Y - l jS \of F', strtotime($battery['Battery']['expiry_date'])); ?>
 						</td>
 
 						<!-- Model -->

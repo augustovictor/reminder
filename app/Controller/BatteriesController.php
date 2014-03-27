@@ -5,54 +5,53 @@
 	class BatteriesController extends AppController {
 		public $name = 'Battery';
 		public $helpers = array('Html');
+		var $components = array('Email', 'Paginator');
 
 
 		public function index() {
+			$this->Battery->recursive = 0;			
+
 			$order = 'expiry_date asc';
 			$current_user_id = $this->Auth->user('id');
 			$current_user_role = $this->Auth->user('role');
 
 			if($current_user_role === 'customer') {
-				$this->set('toDoBattery', $this->Battery->find('all', 
-						array(
-							'order' => $order,
-							'conditions' => array(
-								'user_id' => $current_user_id, 
-								'done' => '0'
-								) //End conditions
-						) //End array
-					) //End find
-				); // End set
+				$this->Paginator->settings = array(
+					'conditions' => array('done' => '0'),
+					'limit' => 100000,
+			        'order' => array('Battery.expiry_date' => 'asc'),
+			        'user_id' => $current_user_id, 
+				);
+				$this->set('toDoBattery', $this->Paginator->paginate());
 
-				$this->set('closedBattery', $this->Battery->find('all', 
-					array('order' => $order, 'conditions' => array(
-								'user_id' => $current_user_id, 
-								'done' => '1'
-							) //End conditions
-						) //End array
-					) //End find
-				);//End set
+				
+
+				$this->Paginator->settings = array(
+					'conditions' => array('done' => '1'),
+					'limit' => 100000,
+			        'order' => array('Battery.expiry_date' => 'asc'),
+			        'user_id' => $current_user_id, 
+				);
+				$this->set('closedDoBattery', $this->Paginator->paginate());
 			}
 			// End if customer
 
 			if ($current_user_role === 'admin') {
-				$this->set('toDoBattery', $this->Battery->find('all', 
-						array(
-							'order' => $order,
-							'conditions' => array(
-								'done' => '0'
-								) //End conditions
-						) //End array
-					) //End find
-				); // End set
+				$this->Paginator->settings = array(
+					'conditions' => array('done' => '0'),
+					'limit' => 100000,
+			        'order' => array('Battery.expiry_date' => 'asc'),
+				);
+				$this->set('toDoBattery', $this->Paginator->paginate());
 
-				$this->set('closedBattery', $this->Battery->find('all', 
-					array('order' => $order, 'conditions' => array(
-								'done' => '1'
-							) //End conditions
-						) //End array
-					) //End find
-				);//End set
+				
+
+				$this->Paginator->settings = array(
+					'conditions' => array('done' => '1'),
+					'limit' => 100000,
+			        'order' => array('Battery.expiry_date' => 'asc'),
+				);
+				$this->set('closedDoBattery', $this->Paginator->paginate());
 			}
 			// End if current_user_role
 		}

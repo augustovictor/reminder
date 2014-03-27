@@ -11,8 +11,8 @@
 
 		<thead>
 			<tr>
-				<th> <strong> Username </strong> </th>
-				<th> <strong> Email </strong> </th>
+				<th> <?php echo $this->Paginator->sort('username', 'Client'); ?> </th>
+				<th> <?php echo $this->Paginator->sort('email'); ?> </th>
 				<th> <strong> Actions </strong> </th>
 			</tr>
 		</thead>

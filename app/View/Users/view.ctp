@@ -38,7 +38,7 @@
 
 							<!-- Expiry date -->
 							<td>
-								<?php echo date('l jS \of F', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
+								<?php echo date('Y - l jS \of F', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
 							</td>
 
 							<!-- Num users -->
@@ -75,7 +75,6 @@
 
 			<thead>
 					<tr>
-						<th> Battery id </th>
 						<th> Expiry date </th>
 						<th> Model </th>
 						<th> Replace cost </th>
@@ -87,14 +86,10 @@
 				<tbody>
 					<?php foreach($batteries as $battery): ?>
 						<tr class="<?php echo $this->App->shouldBeClosed($battery['Battery']['expiry_date']); ?>">
-							<!-- Battery id -->
-							<td>
-								<?php echo $battery['Battery']['batt_id']; ?>
-							</td>
 
 							<!-- Expiry date -->
 							<td>
-								<?php echo date('l jS \of F', strtotime($battery['Battery']['expiry_date'])); ?>
+								<?php echo date('Y - l jS \of F', strtotime($battery['Battery']['expiry_date'])); ?>
 							</td>
 
 							<!-- Model -->
@@ -141,7 +136,7 @@
 						<tr class="<?php echo $this->App->shouldBeClosed($pm['Pm']['date']); ?>">
 							<!-- Expiry date -->
 							<td>
-								<?php echo date('l jS \of F', strtotime($pm['Pm']['date'])); ?>
+								<?php echo date('Y - l jS \of F', strtotime($pm['Pm']['date'])); ?>
 							</td>
 
 							<!-- Location -->

@@ -6,7 +6,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button><!-- /.navbar-toggle -->
-		<?php echo $this->Html->Link('Reminder system', array('controller' => 'antivirus', 'action' => 'index'), array('class' => 'navbar-brand')); ?>
+		<?php echo $this->Html->Link('Reminder system', array('controller' => 'users', 'action' => 'index'), array('class' => 'navbar-brand')); ?>
 	</div><!-- /.navbar-header -->
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav offset-3">

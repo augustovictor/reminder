@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title> Café poético</title>
+        <link rel="stylesheet" type="text/css" href="style/style.css" />
+        <link rel="stylesheet" href="js/fancy/jquery.fancybox.css">
+        <link rel="stylesheet" href="style/lightbox.css" type="text/css" media="screen" />
+        <!--<script src="js/jQuery.js" type="text/javascript"></script>
+        <script src="js/jscript.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/prototype.js"></script>
+		<script type="text/javascript" src="js/scriptaculous.js?load=effects,builder"></script>
+        <script type="text/javascript" src="js/lightbox.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>-->
+        <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=IM+Fell+Great+Primer+SC' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/modernizr.custom.js"></script>   
+        <script type="text/javascript" src="js/fancy/jquery.fancybox.js"></script>
+        <script type="text/javascript" src="js/cafe.js"></script>
+        <script type="text/javascript">
+            /* FANCYBOX IMAGENS */
+            $(".fancy").fancybox({
+                openEffect: 'Elastic',
+                closeEffect: 'Elastic',
+                prevEffect: 'Fade',
+                nextEffect: 'Fade',
+            });
+            // Quando o botão de veja galeria for clicado, a página de fotos é carregada.
+            jQuery(document).ready(function() {
+               $('#btnShowGallery').click(function() {
+                    console.log("AAA");
+                    $('#menuOpGaleria').trigger('click');
+                }); 
+            });
+        </script>
+    </head>
+    <body>
+        <img src="imagens/borderTop.png" class="borderTop" />
+
+		<!-- Inicio general -->
+  		<div id="general">
+            <!-- Inicio topMenu -->
+            <div id="topMenu">
+                <ul id="firstPartMenu">
+                    <li><a href="index.html" id="menuOpInicio" rel="index.html">Início</a></li>
+                    <li><a id="menuOpPoetico" rel="poetico.html">O Café poético</a></li>
+                    <li><a href="#" id="menuOpGaleria" rel="galeria.html">Galeria de fotos</a></li>
+                </ul>
+                <a href="index.html" id="cafPic"><img src="imagens/cafeLogo.png" alt="Café Poético"/> </a>
+                <ul id="secPartMenu">
+                	<li><a href="#" id="menuOpSobre" rel="sobreCafe.html">Sobre o café</a></li>
+                    <li><a href="#" id="menuOpOnde" rel="ondeEstamos.html">Onde estamos</a></li>
+                    <li><a href="#" id="menuOpContato" rel="contato.html">Contato</a></li>
+                </ul>
+            
+            </div>
+            <!-- Fim topMenu -->
+            
+            <!-- Inicio slidePic -->
+            <div class="slidePic">
+            <img src="imagens/cg01.jpg" id="banner06" class="bannerImg" />
+            <img src="imagens/banner3.jpg" id="banner05" class="bannerImg" />
+            <img src="imagens/cg02.jpg" id="banner04" class="bannerImg" />
+            <img src="imagens/banner4.jpg" id="banner03" class="bannerImg" />
+            <img src="imagens/cg03.jpg" id="banner02" class="bannerImg" />
+            <img src="imagens/banner2.jpg" id="banner01" class="bannerImg" />
+            	<!-- Inicio barSelSlide -->
+                <div id="barSelSlide">
+                	<ul class="buttons">
+                        <li id="ban06" rel="banner06" class="btnBanner">6</li>
+                        <li id="ban05" rel="banner05"  class="btnBanner">5</li>
+                        <li id="ban04" rel="banner04"  class="btnBanner">4</li>
+                    	<li id="ban03" rel="banner03"  class="btnBanner">3</li>
+                        <li id="ban02" rel="banner02"  class="btnBanner">2</li>
+                        <li id="ban01" rel="banner01"  class="btnBanner">1</li>
+                    </ul>
+                    <ul id="descBarSlide">
+                    	<li>Internet Wi-fi para que você possa navegar na internet enquanto aprecia a nossa cozinha.</li>
+                    </ul>
+                </div>
+                <!-- Fim barSelSlide -->
+            	<img src="imagens/graosSaca.png" class="imgOverSlide"/>
+            </div>
+            <!-- Fim slidePic -->
+            
+            <!-- Inicio content -->
+            <div id="content">
+            
+            	<!-- Inicio phrases -->
+                <div id="phrases">
+                	<label><img src="imagens/imgAspaEsquerda.png" /></label>
+                	<label class="phrasesTxt"></label>
+                    <br />
+                    <label class="nameAutoPhrase"></label>
+                    <label><img src="imagens/imgAspaDireita.png" /></label>
+                
+                </div>
+                <!-- Fim phrases -->
+                
+                <!-- Inicio boxDescCaf -->
+                <div id="boxDescCaf">
+                	<img src="imagens/graosSome.png"  /> 
+                    <label class="titLabel">O Café poético</label>
+                    <hr class="hrS" /><br /><br /><br />
+                    <p class="boxDesc">
+                    	Com dua unidade na Paraíba o café poético traz um café produzido com carinho e qualidade com clima familiar e de amizade, é referência de qualidade na comercialização do produto, através de suas cafeterias. Todos os dias várias pessoas vem apreciar o verdadeiro café 100% arábico...
+                    </p>
+                    <a id="btnAbout">Leia mais</a>
+                </div>
+                <!-- Fim boxDescCaf -->
+                
+                <!-- Inicio boxGalPics -->
+                <div id="boxGalPics">
+                	<label class="titLabel">
+                    	Galeria de fotos
+                    </label>
+                    <hr class="hrM" /><br><br><br>
+                    <p class="boxDesc">
+                    	Grandes momentos são vividos dentro de uma cafeteria, amizades são criadas, decisões são tomadas, trabalha-se, estuda-se, vive-se em plenitude ao sabor de um bom café e de um ambiente agradável.
+                    </p>
+                    
+                    <!-- Inicio imgMiniPic -->
+                    <div id="imgMiniPic">
+                    	<a href="imagens/galeria/cg_05.jpg" rel="galeria" class="fancy"> <img src="imagens/galeria/cg_05.jpg" /> </a>
+                     <a href="imagens/galeria/cg_04.jpg" rel="galeria" class="fancy"> <img src="imagens/galeria/cg_04.jpg" /> </a>
+                     <a href="imagens/galeria/cg_10.jpg" rel="galeria" class="fancy"> <img src="imagens/galeria/cg_10.jpg" /> </a>   
+                    </div>
+                    <!-- Fim imgMiniPic -->
+                    <br />
+                    <img src="imagens/graosLot.png" class="graosLot" />
+                    <label class="btnShowMore" id="btnShowGallery">Veja a galeria completa</label>
+                </div>
+                <!-- Fim boxGalPics -->
+                <br  />
+                <hr class="hrM" />
+                <div class="infoTitle">
+                    <span>Informações</span>
+                    <img src="imagens/imgInfo.png" class="imgInfo" />
+                </div>
+                
+                <!-- Inicio boxInfo -->
+                <div class="boxInfo">
+                    <!--<img src="imagens/imgInfo.png" class="imgInfo" />-->
+                     <img class="grao" src="imagens/graoOnly.png"  />
+                    <address class="boxDesc">
+                        <strong>Campina Grande:</strong><br />
+                        Rua Doutor Severino Cruz, 557, Centro,<br /> 
+                        (083) 3063-0670
+                    </address>
+                </div>
+                <div class="boxInfo">
+                
+                    <!--<label class="titLabel">
+                        Informações
+                    </label>-->
+                    <address class="boxDesc">
+                        <strong>João Pessoa:</strong><br />
+                        Av. Frutuoso Dantas, 165, Cabo Branco <br />
+                        (83) 8829-0489
+                    </address>
+                </div>
+                <!-- Fim boxInfo -->
+            </div>
+            <!-- Fim content -->
+            
+            <br />
+            <hr class="hrB" />
+            <br />
+            
+            <!-- Inicio footer -->
+            <div id="footer">
+            	<label>www.cafepoetico.com.br</label>
+                <label>Todos os direitos reservados</label>
+                <a href="http://studiopixus.com/"> <img src="imagens/logoPixus.png"  /> </a>
+            </div>
+            <!-- Fim footer -->
+            <br style="clear: both;" />
+        </div>
+        <!-- Fim general -->
+    </body>
+</html>

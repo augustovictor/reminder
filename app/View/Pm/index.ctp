@@ -15,9 +15,9 @@
 					
 			<thead>
 				<tr>
-					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
-					<th> Date </th>
-					<th> Location </th>
+					<?php if ($this->App->current_user_admin()) echo '<th>' . $this->Paginator->sort('User.username', 'Client') . '</th>'; ?>
+					<th> <?php echo $this->Paginator->sort('date'); ?> </th>
+					<th><?php echo $this->Paginator->sort('location'); ?> </th>
 					<th class="text-right"> Actions </th>
 				</tr>
 			</thead>
@@ -34,7 +34,7 @@
 
 						<!-- Date -->
 						<td>
-							<?php echo date('l jS \of F', strtotime($pm['Pm']['date'])); ?>
+							<?php echo date('Y - l jS \of F', strtotime($pm['Pm']['date'])); ?>
 						</td>
 
 						<!-- Location -->
@@ -91,7 +91,7 @@
 
 						<!-- Date -->
 						<td>
-							<?php echo date('l jS \of F', strtotime($pm['Pm']['date'])); ?>
+							<?php echo date('Y - l jS \of F', strtotime($pm['Pm']['date'])); ?>
 						</td>
 
 						<!-- Location -->

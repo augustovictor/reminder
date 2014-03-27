@@ -9,32 +9,32 @@
 		var $components = array('Email', 'Paginator');
 
 		public function index() {
-			$this->Paginator->settings = $this->paginate;
+			// $this->Paginator->settings = $this->paginate;
 			$this->Antivirus->recursive = 0;
+
+
 			$order = 'av_expiry_date asc';
 			$current_user_id = $this->Auth->user('id');
 			$current_user_role = $this->Auth->user('role');
 
 			if($current_user_role === 'customer') {
-				$this->set('toDoAntivirus', $this->Paginator->paginate( 
-						array(
-							'order' => $order,
-							'conditions' => array(
-								'user_id' => $current_user_id, 
-								'done' => '0'
-								) //End conditions
-						) //End array
-					) //End find
-				); // End set
+				$this->Paginator->settings = array(
+			        'conditions' => array('done' => '0'),
+			        'limit' => 100000,
+			        'order' => array('Antivirus.av_expiry_date' => 'asc'),
+			        'user_id' => $current_user_id, 
+			    );
 
-				$this->set('closedAntivirus', $this->Antivirus->find('all', 
-					array('order' => $order, 'conditions' => array(
-								'user_id' => $current_user_id, 
-								'done' => '1'
-							) //End conditions
-						) //End array
-					) //End find
-				);//End set
+				$this->set('toDoAntivirus', $this->Paginator->paginate());
+
+				$this->Paginator->settings = array(
+			        'conditions' => array('done' => '1'),
+			        'limit' => 100000,
+			        'order' => array('Antivirus.av_expiry_date' => 'asc'),
+			        'user_id' => $current_user_id, 
+			    );
+
+				$this->set('closedAntivirus', $this->Paginator->paginate());
 			}
 			// End if customer
 
@@ -44,6 +44,7 @@
 			        'limit' => 100000,
 			        'order' => array('Antivirus.av_expiry_date' => 'asc'),
 			    );
+
 				$this->set('toDoAntivirus', $this->Paginator->paginate());
 
 				$this->Paginator->settings = array(
@@ -51,7 +52,7 @@
 			        'limit' => 100000,
 			        'order' => array('Antivirus.av_expiry_date' => 'asc'),
 			    );
-			    
+
 				$this->set('closedAntivirus', $this->Paginator->paginate());
 
 			} // End if current_user_role

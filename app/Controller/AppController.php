@@ -40,7 +40,7 @@ class AppController extends Controller {
 	public $components = array(
         'Session',
         'Auth' => array(
-            'loginRedirect' => array('controller' => 'reminders', 'action' => 'index'),
+            'loginRedirect' => array('controller' => 'users', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
             'authorize' => array('Controller')
         )
@@ -49,7 +49,8 @@ class AppController extends Controller {
     public function isAuthorized($user) {
 
         // Admin can access every action
-        if (isset($user['role']) && ($user['role'] === 'customer' || $user['role'] === 'admin')) {
+        // if (isset($user['role']) && ($user['role'] === 'customer' || $user['role'] === 'admin')) {
+        if (isset($user['role']) && $user['role'] === 'admin') {
         // if (isset($user['role']) && $user['role'] === 'admin') {
             return true;
         }
@@ -60,7 +61,7 @@ class AppController extends Controller {
     // End isAuthorized
 
     public function beforeFilter() {
-        $this->Auth->allow('index', 'view', 'login', 'logout');
+        $this->Auth->allow('login', 'logout');
         // $this->Auth->allow('add', 'login');
     }
 

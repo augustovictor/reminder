@@ -5,54 +5,54 @@
 	class PmsController extends AppController {
 		public $name = 'Pm';
 		public $helpers = array('Html');
+		var $components = array('Email', 'Paginator');
 
 
 		public function index() {
+			$this->Pm->recursive = 0;
+
 			$order = 'date asc';
 			$current_user_id = $this->Auth->user('id');
 			$current_user_role = $this->Auth->user('role');
 
 			if($current_user_role === 'customer') {
-				$this->set('toDoPm', $this->Pm->find('all', 
-						array(
-							'order' => $order,
-							'conditions' => array(
-								'user_id' => $current_user_id, 
-								'done' => '0'
-								) //End conditions
-						) //End array
-					) //End find
-				); // End set
+				$this->Paginator->settings =  array(
+			        'conditions' => array('done' => '0'),
+			        'limit' => 100000,
+			        'order' => array('Pm.date' => 'asc'),
+			        'user_id' => $current_user_id, 
+			    );
 
-				$this->set('closedPm', $this->Pm->find('all', 
-					array('order' => $order, 'conditions' => array(
-								'user_id' => $current_user_id, 
-								'done' => '1'
-							) //End conditions
-						) //End array
-					) //End find
-				);//End set
+			    $this->set('toDoPm', $this->Paginator->paginate());
+
+
+				$this->Paginator->settings =  array(
+			        'conditions' => array('done' => '1'),
+			        'limit' => 100000,
+			        'order' => array('Pm.date' => 'asc'),
+			        'user_id' => $current_user_id, 
+			    );
+
+			    $this->set('closedPm', $this->Paginator->paginate());
 			}
 			// End if customer
 
 			if ($current_user_role === 'admin') {
-				$this->set('toDoPm', $this->Pm->find('all', 
-						array(
-							'order' => $order,
-							'conditions' => array(
-								'done' => '0'
-								) //End conditions
-						) //End array
-					) //End find
-				); // End set
+				$this->Paginator->settings =  array(
+			        'conditions' => array('done' => '0'),
+			        'limit' => 100000,
+			        'order' => array('Pm.date' => 'asc'),
+			    );
 
-				$this->set('closedPm', $this->Pm->find('all', 
-					array('order' => $order, 'conditions' => array(
-								'done' => '1'
-							) //End conditions
-						) //End array
-					) //End find
-				);//End set
+			    $this->set('toDoPm', $this->Paginator->paginate());
+
+				$this->Paginator->settings =  array(
+			        'conditions' => array('done' => '1'),
+			        'limit' => 100000,
+			        'order' => array('Pm.date' => 'asc'),
+			    );
+
+			    $this->set('closedPm', $this->Paginator->paginate());
 			}
 			// End if current_user_role
 		}
