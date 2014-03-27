@@ -16,6 +16,7 @@
 			<thead>
 				<tr>
 					<?php if ($this->App->current_user_admin()) echo '<th>' . $this->Paginator->sort('User.username', 'Client') . '</th>'; ?>
+					<th> <?php echo $this->Paginator->sort('User.company', 'Company'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('date'); ?> </th>
 					<th><?php echo $this->Paginator->sort('location'); ?> </th>
 					<th class="text-right"> Actions </th>
@@ -32,9 +33,14 @@
 							</td>
 						<?php endif; ?>
 
+						<!-- Company -->
+						<td>
+							<?php echo $pm['User']['company']; ?>
+						</td>
+
 						<!-- Date -->
 						<td>
-							<?php echo date('Y - l jS \of F', strtotime($pm['Pm']['date'])); ?>
+							<?php echo date('Y/m/d', strtotime($pm['Pm']['date'])); ?>
 						</td>
 
 						<!-- Location -->
@@ -73,6 +79,7 @@
 			<thead>
 				<tr>
 					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
+					<th> <?php echo $this->Paginator->sort('User.company', 'Company'); ?> </th>
 					<th> Date </th>
 					<th> Location </th>
 					<th class="text-right"> Actions </th>
@@ -89,9 +96,14 @@
 							</td>
 						<?php endif; ?>
 
+						<!-- Company -->
+						<td>
+							<?php echo $pm['User']['company']; ?>
+						</td>
+
 						<!-- Date -->
 						<td>
-							<?php echo date('Y - l jS \of F', strtotime($pm['Pm']['date'])); ?>
+							<?php echo date('Y/m/d', strtotime($pm['Pm']['date'])); ?>
 						</td>
 
 						<!-- Location -->

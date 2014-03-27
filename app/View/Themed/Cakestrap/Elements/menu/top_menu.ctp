@@ -42,7 +42,7 @@
 				<?php if(!$this->Session->read('Auth.User')): ?>
 				<!-- If user NOT logged in -->
 					<li> <?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login')); ?> </li>
-					<li> <?php echo $this->Html->link('Sign up', array('controller' => 'users', 'action' => 'add')); ?> </li>
+					<!-- <li> <?php #echo $this->Html->link('Sign up', array('controller' => 'users', 'action' => 'add')); ?> </li> -->
 				<?php endif; ?> 
 			</li>
 		</ul><!-- /.nav navbar-nav -->

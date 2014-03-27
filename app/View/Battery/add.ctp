@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend> <?php echo __('Add battery reminder') ?> </legend>
 		<?php 
-			if ($this->App->current_user_admin()) echo $this->Form->input('user_id');
+			if ($this->App->current_user_admin()) echo $this->Form->input('user_id', array('selected' => @$this->params['named']['id']));
 			echo $this->Form->input('model');
 			echo $this->Form->input('location', array('rows' => '2'));
 			echo $this->Form->input('renew_cost');

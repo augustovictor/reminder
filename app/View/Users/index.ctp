@@ -12,6 +12,7 @@
 		<thead>
 			<tr>
 				<th> <?php echo $this->Paginator->sort('username', 'Client'); ?> </th>
+				<th> <?php echo $this->Paginator->sort('company'); ?> </th>
 				<th> <?php echo $this->Paginator->sort('email'); ?> </th>
 				<th> <strong> Actions </strong> </th>
 			</tr>
@@ -24,6 +25,9 @@
 					<td> 
 						<?php echo $this->Html->link($user['User']['username'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?> 
 					</td>
+
+					<!-- Company -->
+					<td> <?php echo $user['User']['company']; ?> </td>
 
 					<!-- Email -->
 					<td> <?php echo $user['User']['email']; ?> </td>

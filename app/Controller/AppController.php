@@ -61,7 +61,7 @@ class AppController extends Controller {
     // End isAuthorized
 
     public function beforeFilter() {
-        $this->Auth->allow('login', 'logout');
+        $this->Auth->allow('index', 'view', 'login', 'logout');
         // $this->Auth->allow('add', 'login');
     }
 

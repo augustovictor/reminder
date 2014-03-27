@@ -17,6 +17,8 @@
 				<tr>
 					<?php if ($this->App->current_user_admin()) echo '<th>' . $this->Paginator->sort('User.username', 'Client') . '</th>' ;?>
 					<th> <?php echo $this->Paginator->sort('username', 'Av username'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('password'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('User.company', 'Company'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('expiry_date'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('num_users'); ?></th>
 					<th> <?php echo $this->Paginator->sort('renew_cost'); ?> </th>
@@ -44,14 +46,24 @@
 							</td>
 						<?php endif; ?>
 
-						<!-- Antivirus id -->
+						<!-- Antivirus username -->
 						<td>
 							<?php echo $antivirus['Antivirus']['username']; ?>
 						</td>
 
+						<!-- Antivirus password -->
+						<td>
+							<?php echo $antivirus['Antivirus']['password']; ?>
+						</td>
+
+						<!-- Company -->
+						<td>
+							<?php echo $antivirus['User']['company']; ?>
+						</td>
+
 						<!-- Expiry date -->
 						<td>
-							<?php echo date('Y - l jS \of F', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
+							<?php echo date('Y/m/d', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
 						</td>
 
 						<!-- Num users -->
@@ -99,12 +111,14 @@
 		
 			<thead>
 				<tr>
-					<?php if ($this->App->current_user_admin()) echo '<th> Customer </th>'; ?>
-					<th> Antivirus user </th>
-					<th> Expiry date </th>
-					<th> Num users </th>
-					<th> Renew cost </th>
-					<th> Location </th>
+					<?php if ($this->App->current_user_admin()) echo '<th>' . $this->Paginator->sort('User.username', 'Client') . '</th>' ;?>
+					<th> <?php echo $this->Paginator->sort('username', 'Av username'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('User.company', 'Company'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('password'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('expiry_date'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('num_users'); ?></th>
+					<th> <?php echo $this->Paginator->sort('renew_cost'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('location'); ?> </th>
 					<th class="text-right"> Actions </th>
 				</tr>
 			</thead>
@@ -124,9 +138,19 @@
 							<?php echo $antivirus['Antivirus']['username']; ?>
 						</td>
 
+						<!-- Antivirus password -->
+						<td>
+							<?php echo $antivirus['Antivirus']['password']; ?>
+						</td>
+
+						<!-- Company id -->
+						<td>
+							<?php echo $antivirus['User']['company']; ?>
+						</td>
+
 						<!-- Expiry date -->
 						<td>
-							<?php echo date('Y - l jS \of F', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
+							<?php echo date('Y/m/d', strtotime($antivirus['Antivirus']['av_expiry_date'])); ?>
 						</td>
 
 						<!-- Num users -->
