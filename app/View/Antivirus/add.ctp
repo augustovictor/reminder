@@ -5,7 +5,7 @@
 		<?php 
 			if ($this->App->current_user_admin()) echo $this->Form->input('user_id', array('selected' => @$this->params['named']['id']));
 			echo $this->Form->input('username');
-			echo $this->Form->input('password');
+			echo $this->Form->input('password', array('type' => 'text'));
 			echo $this->Form->input('num_users');
 			echo $this->Form->input('renew_cost');
 			echo $this->Form->input('location', array('rows' => '2'));

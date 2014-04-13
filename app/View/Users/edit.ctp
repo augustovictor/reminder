@@ -5,6 +5,7 @@
 	        <?php 
 		        echo $this->Form->input('username', array('disabled' => 'true'));
 		        echo $this->Form->input('email');
+		        echo $this->Form->input('company');
 		        // echo $this->Form->input('password');
 		    ?>
 	    </fieldset>

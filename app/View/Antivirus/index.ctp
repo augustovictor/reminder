@@ -113,8 +113,8 @@
 				<tr>
 					<?php if ($this->App->current_user_admin()) echo '<th>' . $this->Paginator->sort('User.username', 'Client') . '</th>' ;?>
 					<th> <?php echo $this->Paginator->sort('username', 'Av username'); ?> </th>
-					<th> <?php echo $this->Paginator->sort('User.company', 'Company'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('password'); ?> </th>
+					<th> <?php echo $this->Paginator->sort('User.company', 'Company'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('expiry_date'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('num_users'); ?></th>
 					<th> <?php echo $this->Paginator->sort('renew_cost'); ?> </th>
