@@ -1,6 +1,6 @@
 <?php  
 
-	class NotificationShell extends Shell {
+	class ReminderShell extends Shell {
 		
 		// Tasks for this shell
 		var $tasks = array('Email');
@@ -22,7 +22,7 @@
 		function sendMeAnEmail() {
 			return $this->Email->send(array(
 					'to' => 'victoraweb@gmail.com',
-					'subject' => 'Talking to myself.'
+					'subject' => 'Reminder.'
 				));
 		}
 		// End sendMeAnEmail

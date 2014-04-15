@@ -25,6 +25,38 @@
 <body>
 	<?php echo $this->fetch('content'); ?>
 
-	<p>This email was sent using the <a href="http://cakephp.org">CakePHP Framework</a></p>
+	<br />
+<br />
+
+<p>
+	<strong>A PROFESSIONAL CORPORATION SERVING</strong>
+
+	<br />
+	<br />
+
+	PROFESSIONALS FOR 31 YEARS!
+
+	<br />
+	<br />
+
+	Tec-Direct Technologies (Canada) Corporation
+
+	<br />
+	<br />
+
+	<a href="https://maps.google.ca/maps?ie=UTF-8&amp;q=kalax+map+thunder+bay&amp;fb=1&amp;gl=ca&amp;hq=kalax+map+thunder+bay&amp;cid=8719327751092870199&amp;ei=N_QZU-SYNufuyAH8r4DoAw&amp;ved=0CDgQrwswAg" target="_blank">
+		715 Hewitson St, Suite 1002 - Thunder Bay, ON, Canada P7B 6B5
+	</a>
+
+	<br />
+	<br />
+
+	<strong>(807) 623-4566 (Main)</strong>
+
+	<br />
+	<br />
+
+	support@kalax.on.ca
+<p />
 </body>
 </html>

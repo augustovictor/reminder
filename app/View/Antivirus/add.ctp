@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend> <?php echo __('Add antivirus reminder') ?> </legend>
 		<?php 
-			if ($this->App->current_user_admin()) echo $this->Form->input('user_id', array('selected' => @$this->params['named']['id']));
+			if ($this->App->current_user_admin()) echo $this->Form->input('user_id', array('selected' => @$this->params['named']['user_id']));
 			echo $this->Form->input('username');
 			echo $this->Form->input('password', array('type' => 'text'));
 			echo $this->Form->input('num_users');

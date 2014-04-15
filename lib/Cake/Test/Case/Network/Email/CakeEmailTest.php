@@ -1216,7 +1216,7 @@ class CakeEmailTest extends CakeTestCase {
 		$this->CakeEmail->template('default', 'default');
 		$result = $this->CakeEmail->send();
 
-		$this->assertContains('This email was sent using the CakePHP Framework', $result['message']);
+		$this->assertContains('KALAX', $result['message']);
 		$this->assertContains('Message-ID: ', $result['headers']);
 		$this->assertContains('To: ', $result['headers']);
 	}
@@ -1238,7 +1238,7 @@ class CakeEmailTest extends CakeTestCase {
 		$result = $this->CakeEmail->send('message body.');
 
 		$this->assertContains('message body.', $result['message']);
-		$this->assertNotContains('This email was sent using the CakePHP Framework', $result['message']);
+		$this->assertNotContains('KALAX', $result['message']);
 	}
 
 /**
@@ -1425,7 +1425,7 @@ class CakeEmailTest extends CakeTestCase {
 
 		$result = $this->CakeEmail->template('TestPlugin.test_plugin_tpl', 'default')->send();
 		$this->assertContains('Into TestPlugin.', $result['message']);
-		$this->assertContains('This email was sent using the CakePHP Framework', $result['message']);
+		$this->assertContains('KALAX', $result['message']);
 
 		$result = $this->CakeEmail->template('TestPlugin.test_plugin_tpl', 'TestPlugin.plug_default')->send();
 		$this->assertContains('Into TestPlugin.', $result['message']);
@@ -1571,7 +1571,7 @@ class CakeEmailTest extends CakeTestCase {
 		$expected = '<p>This email was sent using the <a href="http://cakephp.org">CakePHP Framework</a></p>';
 		$this->assertContains($expected, $this->CakeEmail->message(CakeEmail::MESSAGE_HTML));
 
-		$expected = 'This email was sent using the CakePHP Framework, http://cakephp.org.';
+		$expected = 'KALAX, http://cakephp.org.';
 		$this->assertContains($expected, $this->CakeEmail->message(CakeEmail::MESSAGE_TEXT));
 
 		$message = $this->CakeEmail->message();

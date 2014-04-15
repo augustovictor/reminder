@@ -245,7 +245,7 @@ HEADBLOC;
 
 This is the body of the message
 
-This email was sent using the CakePHP Framework, http://cakephp.org.
+KALAX, http://kalax.on.ca/
 TEXTBLOC;
 
 		$html = <<<HTMLBLOC
@@ -308,7 +308,7 @@ HTMLBLOC;
 
 <body>
 	<p> This is the body of the message</p><p> </p>
-	<p>This email was sent using the CakePHP Framework</p>
+	<p>KALAX</p>
 </body>
 </html>
 
@@ -467,7 +467,7 @@ HTMLBLOC;
 		$text = <<<TEXTBLOC
 
 Here is your value: 22091985
-This email was sent using the CakePHP Framework, http://cakephp.org.
+KALAX, http://kalax.on.ca/
 TEXTBLOC;
 
 		$html = <<<HTMLBLOC

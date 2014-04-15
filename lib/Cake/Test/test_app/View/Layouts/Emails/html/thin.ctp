@@ -8,6 +8,6 @@
 <body>
 	<?php echo $content_for_layout; ?>
 
-	<p>This email was sent using the CakePHP Framework</p>
+	<p>KALAX</p>
 </body>
 </html>

@@ -20,7 +20,7 @@
 	  <div class="tab-pane active" id="Antivirus">
 		<p class="lead"> Antivirus </p>
 
-		<?php echo $this->Html->link('Add antivirus reminder', array('controller' => 'antivirus', 'action' => 'add', 'id' => $user['User']['id']), array('class' => 'btn btn-mini btn-primary ')); ?>
+		<?php echo $this->Html->link('Add antivirus reminder', array('controller' => 'antivirus', 'action' => 'add', 'user_id' => $user['User']['id']), array('class' => 'btn btn-mini btn-primary ')); ?>
 
 		<table class='table table-striped table-condensed table-hover'>
 
