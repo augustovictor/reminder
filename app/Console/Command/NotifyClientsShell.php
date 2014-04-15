@@ -18,7 +18,7 @@
 
 			$this->out('Antivirus');
 			foreach($avs as $av) {
-				if(abs(floor(strtotime(date('Y/m/d')) - strtotime($av['Antivirus']['av_expiry_date']))/3600/24) == 14) {
+				if(abs(floor(strtotime(date('Y/m/d')) - strtotime($av['Antivirus']['av_expiry_date']))/3600/24) <= 14) {
 					$Email = new CakeEmail();
 					$Email->template('antivirus_reminder', 'default')
 						->viewVars(array('username' => $av['User']['username'], 'date' => $av['Antivirus']['av_expiry_date']))
@@ -39,10 +39,10 @@
 
 			$this->out('Batteries');
 			foreach($batteries as $battery) {
-				if(abs(floor(strtotime(date('Y/m/d')) - strtotime($battery['Battery']['expiry_date']))/3600/24) == 14) {
+				if(abs(floor(strtotime(date('Y/m/d')) - strtotime($battery['Battery']['expiry_date']))/3600/24) <= 14) {
 					$Email = new CakeEmail();
 					$Email->$Email->template('battery_reminder', 'default')
-						->viewVars(array('username' => $pm['User']['username'], 'date' => $pm['Pm']['expiry_date']))
+						->viewVars(array('username' => $battery['User']['username'], 'date' => $battery['Battery']['expiry_date']))
 						->emailFormat('html')
 						->from(array('info@kalax.on.ca' => 'Kalax Reminder'))
 					    ->to($battery['User']['email'])
@@ -60,7 +60,7 @@
 
 			$this->out('Pms');
 			foreach($pms as $pm) {
-				if(abs(floor(strtotime(date('Y/m/d')) - strtotime($pm['Pm']['date']))/3600/24) == 5) {
+				if(abs(floor(strtotime(date('Y/m/d')) - strtotime($pm['Pm']['date']))/3600/24) <= 5) {
 					$Email = new CakeEmail();
 					$Email->$Email->template('pm_reminder', 'default')
 						->viewVars(array('username' => $pm['User']['username'], 'date' => $pm['Pm']['date']))
