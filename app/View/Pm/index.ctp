@@ -1,6 +1,6 @@
 <h1> Pms </h1>
 
-<?php echo $this->Html->link('Add pm reminder', array('controller' => 'pms', 'action' => 'add'), array('class' => 'btn btn-mini btn-primary ')); ?>
+<?php if ($this->App->current_user_admin()) echo $this->Html->link('Add pm reminder', array('controller' => 'pms', 'action' => 'add'), array('class' => 'btn btn-mini btn-primary ')); ?>
 
 <h3> <p class="lead">Open Pm</p> </h3>
 
@@ -19,7 +19,9 @@
 					<th> <?php echo $this->Paginator->sort('User.company', 'Company'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('date'); ?> </th>
 					<th><?php echo $this->Paginator->sort('location'); ?> </th>
-					<th class="text-right"> Actions </th>
+					<?php if ($this->App->current_user_admin()): ?>
+						<th class="text-right"> Actions </th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 
@@ -49,11 +51,13 @@
 						</td>
 
 						<!-- Actions -->
-						<td class="text-right">
-							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Close', array('controller' => 'pms', 'action' => 'close', $pm['Pm']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
-							<?php echo $this->Html->link('Edit', array('controller' => 'pms', 'action' => 'edit', $pm['Pm']['id']), array('class' => 'btn btn-success btn-xs')); ?>
-							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $pm['Pm']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td class="text-right">
+								<?php if ($this->App->current_user_admin()) echo $this->Html->link('Close', array('controller' => 'pms', 'action' => 'close', $pm['Pm']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+								<?php echo $this->Html->link('Edit', array('controller' => 'pms', 'action' => 'edit', $pm['Pm']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+								<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $pm['Pm']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+							</td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach;?>
 			</tbody>
@@ -82,7 +86,9 @@
 					<th> <?php echo $this->Paginator->sort('User.company', 'Company'); ?> </th>
 					<th> Date </th>
 					<th> Location </th>
-					<th class="text-right"> Actions </th>
+					<?php if ($this->App->current_user_admin()): ?>
+						<th class="text-right"> Actions </th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 		
@@ -112,11 +118,13 @@
 						</td>
 
 						<!-- Actions -->
-						<td class="text-right">
-							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'pms', 'action' => 'reopen', $pm['Pm']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
-							<?php echo $this->Html->link('Edit', array('controller' => 'pms', 'action' => 'edit', $pm['Pm']['id']), array('class' => 'btn btn-success btn-xs')); ?>
-							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $pm['Pm']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td class="text-right">
+								<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'pms', 'action' => 'reopen', $pm['Pm']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+								<?php echo $this->Html->link('Edit', array('controller' => 'pms', 'action' => 'edit', $pm['Pm']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+								<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $pm['Pm']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+							</td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

@@ -1,6 +1,6 @@
 <h1> Batteries </h1>
 
-<?php echo $this->Html->link('Add battery reminder', array('controller' => 'batteries', 'action' => 'add'), array('class' => 'btn btn-mini btn-primary ')); ?>
+<?php if ($this->App->current_user_admin()) echo $this->Html->link('Add battery reminder', array('controller' => 'batteries', 'action' => 'add'), array('class' => 'btn btn-mini btn-primary ')); ?>
 
 <h3> <p class="lead">Open Battery</p> </h3>
 
@@ -21,7 +21,9 @@
 					<th> <?php echo $this->Paginator->sort('model'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('replace_cost'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('location'); ?> </th>
-					<th class="text-right"> Actions </th>
+					<?php if ($this->App->current_user_admin()): ?>
+						<th class="text-right"> Actions </th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 
@@ -61,11 +63,13 @@
 						</td>
 
 						<!-- Actions -->
-						<td class="text-right">
-							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Close', array('controller' => 'batteries', 'action' => 'close', $battery['Battery']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
-							<?php echo $this->Html->link('Edit', array('controller' => 'batteries', 'action' => 'edit', $battery['Battery']['id']), array('class' => 'btn btn-success btn-xs')); ?>
-							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $battery['Battery']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td class="text-right">
+								<?php if ($this->App->current_user_admin()) echo $this->Html->link('Close', array('controller' => 'batteries', 'action' => 'close', $battery['Battery']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+								<?php echo $this->Html->link('Edit', array('controller' => 'batteries', 'action' => 'edit', $battery['Battery']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+								<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $battery['Battery']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+							</td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach;?>
 			</tbody>
@@ -96,7 +100,9 @@
 					<th> Model </th>
 					<th> Replace cost </th>
 					<th> Location </th>
-					<th class="text-right"> Actions </th>
+					<?php if ($this->App->current_user_admin()): ?>
+						<th class="text-right"> Actions </th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 		
@@ -136,11 +142,13 @@
 						</td>
 
 						<!-- Actions -->
-						<td class="text-right">
-							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'batteries', 'action' => 'reopen', $battery['Battery']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
-							<?php echo $this->Html->link('Edit', array('controller' => 'batteries', 'action' => 'edit', $battery['Battery']['id']), array('class' => 'btn btn-success btn-xs')); ?>
-							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $battery['Battery']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td class="text-right">
+								<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'batteries', 'action' => 'reopen', $battery['Battery']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+								<?php echo $this->Html->link('Edit', array('controller' => 'batteries', 'action' => 'edit', $battery['Battery']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+								<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $battery['Battery']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+							</td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

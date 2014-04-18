@@ -1,6 +1,6 @@
 <h1> Antivirus </h1>
 
-<?php echo $this->Html->link('Add antivirus reminder', array('controller' => 'antivirus', 'action' => 'add'), array('class' => 'btn btn-mini btn-primary ')); ?>
+<?php if ($this->App->current_user_admin()) echo $this->Html->link('Add antivirus reminder', array('controller' => 'antivirus', 'action' => 'add'), array('class' => 'btn btn-mini btn-primary ')); ?>
 
 <h3> <p class="lead">Open Antivirus</p> </h3>
 
@@ -23,7 +23,9 @@
 					<th> <?php echo $this->Paginator->sort('num_users'); ?></th>
 					<th> <?php echo $this->Paginator->sort('renew_cost'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('location'); ?> </th>
-					<th class="text-right"> Actions </th>
+					<?php if ($this->App->current_user_admin()): ?>
+						<th class="text-right"> Actions </th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 
@@ -82,11 +84,13 @@
 						</td>
 
 						<!-- Actions -->
-						<td class="text-right">
-							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Close', array('controller' => 'antivirus', 'action' => 'close', $antivirus['Antivirus']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
-							<?php echo $this->Html->link('Edit', array('controller' => 'antivirus', 'action' => 'edit', $antivirus['Antivirus']['id']), array('class' => 'btn btn-success btn-xs')); ?>
-							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $antivirus['Antivirus']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td class="text-right">
+								<?php if ($this->App->current_user_admin()) echo $this->Html->link('Close', array('controller' => 'antivirus', 'action' => 'close', $antivirus['Antivirus']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+								<?php echo $this->Html->link('Edit', array('controller' => 'antivirus', 'action' => 'edit', $antivirus['Antivirus']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+								<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $antivirus['Antivirus']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+							</td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach;?>
 			</tbody>
@@ -119,7 +123,9 @@
 					<th> <?php echo $this->Paginator->sort('num_users'); ?></th>
 					<th> <?php echo $this->Paginator->sort('renew_cost'); ?> </th>
 					<th> <?php echo $this->Paginator->sort('location'); ?> </th>
-					<th class="text-right"> Actions </th>
+					<?php if ($this->App->current_user_admin()): ?>
+						<th class="text-right"> Actions </th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 		
@@ -169,11 +175,13 @@
 						</td>
 
 						<!-- Actions -->
-						<td class="text-right">
-							<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'antivirus', 'action' => 'reopen', $antivirus['Antivirus']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
-							<?php echo $this->Html->link('Edit', array('controller' => 'antivirus', 'action' => 'edit', $antivirus['Antivirus']['id']), array('class' => 'btn btn-success btn-xs')); ?>
-							<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $antivirus['Antivirus']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
-						</td>
+						<?php if ($this->App->current_user_admin()): ?>
+							<td class="text-right">
+								<?php if ($this->App->current_user_admin()) echo $this->Html->link('Reopen', array('controller' => 'antivirus', 'action' => 'reopen', $antivirus['Antivirus']['id']), array('class' => 'btn btn-primary btn-xs')); ?>
+								<?php echo $this->Html->link('Edit', array('controller' => 'antivirus', 'action' => 'edit', $antivirus['Antivirus']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+								<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $antivirus['Antivirus']['id']), array('confirm' => 'Are you sure?', 'class' => 'btn btn-danger btn-xs')); ?>
+							</td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

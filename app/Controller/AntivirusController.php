@@ -10,7 +10,7 @@
 
 		public function isAuthorized($user) {
 			if ($this->Auth->user('role') === 'basic')
-				if(in_array($this->action, array('edit'))) // Enter here the basic user privileges
+				if(in_array($this->action, array())) // Enter here the basic user privileges
 					return true;
 				
 			return parent::isAuthorized($user);
