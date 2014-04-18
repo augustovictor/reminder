@@ -41,7 +41,7 @@
 			foreach($batteries as $battery) {
 				if(abs(floor(strtotime(date('Y/m/d')) - strtotime($battery['Battery']['expiry_date']))/3600/24) <= 14) {
 					$Email = new CakeEmail();
-					$Email->$Email->template('battery_reminder', 'default')
+					$Email->template('battery_reminder', 'default')
 						->viewVars(array('username' => $battery['User']['username'], 'date' => $battery['Battery']['expiry_date']))
 						->emailFormat('html')
 						->from(array('info@kalax.on.ca' => 'Kalax Reminder'))
@@ -62,7 +62,7 @@
 			foreach($pms as $pm) {
 				if(abs(floor(strtotime(date('Y/m/d')) - strtotime($pm['Pm']['date']))/3600/24) <= 5) {
 					$Email = new CakeEmail();
-					$Email->$Email->template('pm_reminder', 'default')
+					$Email->template('pm_reminder', 'default')
 						->viewVars(array('username' => $pm['User']['username'], 'date' => $pm['Pm']['date']))
 						->emailFormat('html')
 						->from(array('info@kalax.on.ca' => 'Kalax Reminder'))

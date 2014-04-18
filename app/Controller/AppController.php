@@ -47,9 +47,7 @@ class AppController extends Controller {
     );
 
     public function isAuthorized($user) {
-
         // Admin can access every action
-        // if (isset($user['role']) && ($user['role'] === 'customer' || $user['role'] === 'admin')) {
         if (isset($user['role']) && $user['role'] === 'admin') {
         // if (isset($user['role']) && $user['role'] === 'admin') {
             return true;
@@ -61,6 +59,7 @@ class AppController extends Controller {
     // End isAuthorized
 
     public function beforeFilter() {
+        if($this->Auth->user('role') == 'basic') 
         $this->Auth->allow('index', 'view', 'login', 'logout');
         // $this->Auth->allow('add', 'login');
     }

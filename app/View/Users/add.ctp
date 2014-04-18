@@ -6,9 +6,9 @@
 		        echo $this->Form->input('username');
 		        echo $this->Form->input('email');
 		        echo $this->Form->input('company');
-		        // echo $this->Form->input('password');
+		        echo $this->Form->input('password');
 		        echo $this->Form->input('role', array(
-		            'options' => array('customer' => 'Customer')
+		            'options' => array('admin' => 'Admin', 'basic' => 'Basic', 'customer' => 'Customer')
 		        ));
 		    ?>
 	    </fieldset>

@@ -36,7 +36,7 @@
 
 	        'role' => array(
 	            'valid' => array(
-	                'rule' => array('inList', array('admin', 'customer')),
+	                'rule' => array('inList', array('admin', 'basic', 'customer')),
 	                'message' => 'Please enter a valid role',
 	                'allowEmpty' => false
 	            )

@@ -19,8 +19,12 @@
 
 					<li><?php echo $this->Html->link('Pms', array('controller' => 'pms', 'action' => 'index')); ?></li>
 
-					<?php if ($this->App->current_user_admin()): ?>
+					<?php if ($this->App->current_user_admin() || AuthComponent::user('role') === 'basic'): ?>
 						<li><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
+					<?php endif; ?>
+
+					<?php if (AuthComponent::user('role') === 'customer'): ?>
+						<li><?php echo $this->Html->link('Users', array('controller' => 'antivirus', 'action' => 'index')); ?></li>
 					<?php endif; ?>
 
 					<li>

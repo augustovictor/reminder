@@ -7,6 +7,13 @@
 		public $helpers = array('Html');
 		var $components = array('Email', 'Paginator');
 
+		public function isAuthorized($user) {
+			if ($this->Auth->user('role') === 'basic')
+				if(in_array($this->action, array('edit'))) // Enter here the basic user privileges
+					return true;
+				
+			return parent::isAuthorized($user);
+		}
 
 		public function index() {
 			$this->Pm->recursive = 0;
@@ -15,7 +22,7 @@
 			$current_user_id = $this->Auth->user('id');
 			$current_user_role = $this->Auth->user('role');
 
-			if($current_user_role === 'customer') {
+			if($current_user_role === 'customer' || $current_user_role === 'basic') {
 				$this->Paginator->settings =  array(
 			        'conditions' => array('done' => '0'),
 			        'limit' => 100000,
@@ -37,7 +44,7 @@
 			}
 			// End if customer
 
-			if ($current_user_role === 'admin') {
+			if ($current_user_role === 'admin' || $current_user_role === 'basic') {
 				$this->Paginator->settings =  array(
 			        'conditions' => array('done' => '0'),
 			        'limit' => 100000,
